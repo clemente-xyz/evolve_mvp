@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Evolve MVP server",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js --exec babel-node"
+  },
+  "keywords": [
+    "graphql",
+    "apolloserver",
+    "mongodb"
+  ],
+  "author": "ClementeSerrano",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.3.1",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "dotenv": "^6.2.0",
+    "graphql": "^14.1.1",
+    "mongoose": "^5.4.5",
+    "nodemon": "^1.18.9"
+  }
+}
