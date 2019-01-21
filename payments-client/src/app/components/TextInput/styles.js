@@ -1,16 +1,20 @@
 import styled from "styled-components";
 import { colors } from "../../utils";
 
-const { gray, blue } = colors;
+const { light_gray, blue, white } = colors;
 
 const Container = styled.input`
-  outline: none;
-  border: 1px solid ${gray};
-  border-radius: 5px;
   padding: 10px;
+  outline: none;
+  font-size: 15px;
+  border: 1px solid ${light_gray}
+  background-color: ${light_gray};
+  border-radius: 5px;
+  transition: 0.5s all;
 
   &:focus {
-    border-color: ${blue};
+    border: 1px solid ${blue};
+    background-color: ${white};
   }
 `;
 
