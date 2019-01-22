@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container } from "./styles";
+import { MainContainer, TextInputContainer } from "./styles";
 import { Modal, Button, TextInput } from "../../components";
 import { colors } from "../../utils";
 
@@ -13,11 +13,21 @@ const SignUp = () => {
   };
 
   return (
-    <Container>
+    <MainContainer>
       <Modal
         title="Sign up"
         content={
-          <TextInput value={username} handleChange={handleInputsChange} />
+          <>
+            <TextInputContainer>
+              <TextInput value={username} handleChange={handleInputsChange} />
+            </TextInputContainer>
+            <TextInputContainer>
+              <TextInput value={username} handleChange={handleInputsChange} />
+            </TextInputContainer>
+            <TextInputContainer>
+              <TextInput value={username} handleChange={handleInputsChange} />
+            </TextInputContainer>
+          </>
         }
         buttons={
           <Button
@@ -29,7 +39,7 @@ const SignUp = () => {
           />
         }
       />
-    </Container>
+    </MainContainer>
   );
 };
 

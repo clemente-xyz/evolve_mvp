@@ -5,7 +5,9 @@ const { light_gray, blue, white } = colors;
 
 const Container = styled.input`
   padding: 10px;
+  width: 100%;
   outline: none;
+  box-sizing : border-box
   font-size: 15px;
   border: 1px solid ${light_gray}
   background-color: ${light_gray};

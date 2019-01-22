@@ -3,6 +3,7 @@ import styled from "styled-components";
 const Container = styled.button`
   padding: 10px 25px;
   font-size: 15px;
+  font-weight: 500;
   border: none;
   background-color: ${({ backgroundColor }) => backgroundColor};
   color: ${({ textColor }) => textColor};
@@ -12,6 +13,7 @@ const Container = styled.button`
 
   &:hover {
     background-color: ${({ hoverColor }) => hoverColor};
+    top: 1px;
   }
   &:active {
     outline: none;
