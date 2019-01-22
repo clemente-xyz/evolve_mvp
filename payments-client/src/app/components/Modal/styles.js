@@ -13,8 +13,4 @@ const MainContainer = styled.div`
   text-align: center;
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-`;
-
-export { MainContainer, ButtonContainer };
+export { MainContainer };
