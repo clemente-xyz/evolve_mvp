@@ -22,6 +22,9 @@ const SignUp = ({ createCompany, data }) => {
   const handleRegisterClick = event => {
     event.preventDefault();
     createCompany({ variables: { username, password } });
+    alert("Congrats! Now you are subscribed to Evolve");
+    setUsername("");
+    setPassword("");
   };
 
   return (
