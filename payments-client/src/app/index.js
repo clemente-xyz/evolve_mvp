@@ -1,7 +1,12 @@
 import React from "react";
-import Apollo from "./apollo/client";
+import client from "./apollo/client";
 import { Signup } from "./pages";
+import { ApolloProvider } from "react-apollo";
 
-const App = () => Apollo(<Signup />);
+const App = () => (
+  <ApolloProvider client={client}>
+    <Signup />
+  </ApolloProvider>
+);
 
 export default App;

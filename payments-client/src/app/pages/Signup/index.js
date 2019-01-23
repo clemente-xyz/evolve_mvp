@@ -1,15 +1,38 @@
 import React, { useState } from "react";
+import { Mutation } from "react-apollo";
+import { MUTATIONS } from "../../apollo";
 import { MainContainer, TextInputContainer } from "./styles";
 import { Modal, Button, TextInput } from "../../components";
 import { colors } from "../../utils";
 
-const SignUp = () => {
+import gql from "graphql-tag";
+
+const CREATE_COMPANY = gql`
+  mutation CreateCompany($username: String!, $password: String!) {
+    createCompany(username: $username, password: $password) {
+      username
+      password
+    }
+  }
+`;
+
+const SignUp = ({ createCompany, data }) => {
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const { blue, dark_blue, white } = colors;
 
-  const handleInputsChange = event => {
+  const handleUsernameChange = event => {
     setUsername(event.target.value);
+  };
+
+  const handlePasswordChange = event => {
+    setPassword(event.target.value);
+  };
+
+  const handleRegisterClick = event => {
+    event.preventDefault();
+    createCompany({ variables: { username, password } });
   };
 
   return (
@@ -19,19 +42,24 @@ const SignUp = () => {
         content={
           <>
             <TextInputContainer>
-              <TextInput value={username} handleChange={handleInputsChange} />
+              <TextInput
+                name="username"
+                value={username}
+                handleChange={handleUsernameChange}
+              />
             </TextInputContainer>
             <TextInputContainer>
-              <TextInput value={username} handleChange={handleInputsChange} />
-            </TextInputContainer>
-            <TextInputContainer>
-              <TextInput value={username} handleChange={handleInputsChange} />
+              <TextInput
+                name="password"
+                value={password}
+                handleChange={handlePasswordChange}
+              />
             </TextInputContainer>
           </>
         }
         buttons={
           <Button
-            onClick={() => alert(username)}
+            onClick={handleRegisterClick}
             text="Register"
             backgroundColor={blue}
             hoverColor={dark_blue}
@@ -43,4 +71,12 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default () => (
+  <Mutation mutation={CREATE_COMPANY}>
+    {(createCompany, { data }) => {
+      console.log(typeof createCompany);
+
+      return <SignUp createCompany={createCompany} data={data} />;
+    }}
+  </Mutation>
+);
