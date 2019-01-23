@@ -15,7 +15,7 @@ The project arises from the need to reduce the long waiting times incurred and t
 
 Run both server and payments client (see README docs of them).
 
-👉 Ensure that you add properly your mLab credentials as `.env` variable in the server.
+👉 Ensure that you add properly your mongo server url as `.env` variable in the server.
 
 ## Authors
 
