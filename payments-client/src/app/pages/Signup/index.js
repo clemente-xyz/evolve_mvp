@@ -5,17 +5,6 @@ import { MainContainer, TextInputContainer } from "./styles";
 import { Modal, Button, TextInput } from "../../components";
 import { colors } from "../../utils";
 
-import gql from "graphql-tag";
-
-const CREATE_COMPANY = gql`
-  mutation CreateCompany($username: String!, $password: String!) {
-    createCompany(username: $username, password: $password) {
-      username
-      password
-    }
-  }
-`;
-
 const SignUp = ({ createCompany, data }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -71,12 +60,16 @@ const SignUp = ({ createCompany, data }) => {
   );
 };
 
-export default () => (
-  <Mutation mutation={CREATE_COMPANY}>
-    {(createCompany, { data }) => {
-      console.log(typeof createCompany);
+export default () => {
+  const { CREATE_COMPANY } = MUTATIONS;
 
-      return <SignUp createCompany={createCompany} data={data} />;
-    }}
-  </Mutation>
-);
+  return (
+    <Mutation mutation={CREATE_COMPANY}>
+      {(createCompany, { data }) => {
+        console.log(typeof createCompany);
+
+        return <SignUp createCompany={createCompany} data={data} />;
+      }}
+    </Mutation>
+  );
+};
