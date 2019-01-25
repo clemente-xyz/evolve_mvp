@@ -5,6 +5,7 @@ export default gql`
     createCompany(
       username: String!
       password: String!
+      email: String!
       orgName: String
     ): Company
   }
