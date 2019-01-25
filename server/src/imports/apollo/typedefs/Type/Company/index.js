@@ -8,5 +8,7 @@ export default gql`
     email: String!
     orgName: String
     avatar: String
+    createdAt: Date!
+    updatedAt: Date!
   }
 `;
