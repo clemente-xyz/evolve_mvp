@@ -4,7 +4,6 @@ export default gql`
   type Company {
     _id: ID!
     username: String!
-    password: String!
     email: String!
     orgName: String
     avatar: String
