@@ -1,3 +1,4 @@
+import Scalars from "./Scalars";
 import CompanyType from "./Company";
 
-export default [CompanyType];
+export default [Scalars, CompanyType];
