@@ -10,7 +10,13 @@ const CompanySchema = new Schema({
     type: String,
     required: true
   },
-  orgName: String
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  orgName: String,
+  avatar: String
 });
 
 export default mongoose.model("Company", CompanySchema);
