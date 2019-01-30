@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { hashSync } from "bcrypt-nodejs";
+import { hashSync, compareSync } from "bcrypt-nodejs";
 
 const CompanySchema = new Schema(
   {
@@ -35,6 +35,9 @@ CompanySchema.pre("save", function(next) {
 CompanySchema.methods = {
   _hashPassword(password) {
     return hashSync(password);
+  },
+  auth(password) {
+    return compareSync(password, this.password);
   }
 };
 

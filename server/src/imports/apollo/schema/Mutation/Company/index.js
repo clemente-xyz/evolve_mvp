@@ -8,5 +8,6 @@ export default gql`
       email: String!
       orgName: String
     ): Company
+    signinCompany(username: String!, password: String!): Company
   }
 `;
