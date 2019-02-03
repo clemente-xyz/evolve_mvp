@@ -7,7 +7,7 @@ export default gql`
       password: String!
       email: String!
       orgName: String
-    ): Company
-    signinCompany(username: String!, password: String!): Company
+    ): Auth
+    signinCompany(username: String!, password: String!): Auth
   }
 `;

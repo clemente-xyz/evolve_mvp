@@ -1,8 +1,11 @@
 import { Company } from "../../../../../collections";
 
-export default (_, args) => {
+export default async (_, args) => {
   try {
-    return Company.create(args);
+    const company = await Company.create(args);
+    return {
+      token: company.createToken()
+    };
   } catch (error) {
     throw error;
   }

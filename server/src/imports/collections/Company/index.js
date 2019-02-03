@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { hashSync, compareSync } from "bcrypt-nodejs";
+import jwt from "jsonwebtoken";
 
 const CompanySchema = new Schema(
   {
@@ -38,6 +39,14 @@ CompanySchema.methods = {
   },
   auth(password) {
     return compareSync(password, this.password);
+  },
+  createToken() {
+    return jwt.sign(
+      {
+        _id: this._id
+      },
+      process.env.JWT_SECRET
+    );
   }
 };
 
