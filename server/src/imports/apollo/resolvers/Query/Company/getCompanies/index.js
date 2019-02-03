@@ -1,8 +1,11 @@
 import { Company } from "../../../../../collections";
+import helpers from "../../../../../helpers";
 
-export default (_, args, context) => {
+const { requestAuth } = helpers;
+
+export default async (_, args, { user }) => {
   try {
-    console.log("Context: ", context);
+    await requestAuth(user);
     return Company.find({});
   } catch (error) {
     throw error;

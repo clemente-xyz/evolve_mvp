@@ -8,16 +8,20 @@ const decodeToken = token => {
   return jwt.verify(code, process.env.JWT_SECRET);
 };
 
-export default async req => {
+const findAuthUser = req => {
   try {
     const token = req.headers.authorization;
 
-    if (token == null) null;
+    if (!token) return null;
 
-    const user = await decodeToken(token);
-
-    return user;
+    return decodeToken(token);
   } catch (error) {
     throw error;
   }
 };
+
+const requestAuth = user => {
+  if (!user || !user._id) throw new Error("You are not auth!");
+};
+
+export default { findAuthUser, requestAuth };
