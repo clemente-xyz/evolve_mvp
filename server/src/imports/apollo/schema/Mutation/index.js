@@ -1,3 +1,4 @@
 import CompanyMutationTypes from "./Company";
+import PaymentTxMutationTypes from "./PaymentTx";
 
-export default [CompanyMutationTypes];
+export default [CompanyMutationTypes, PaymentTxMutationTypes];
