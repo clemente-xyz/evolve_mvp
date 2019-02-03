@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { Company } from "../../collections";
 
 const decodeToken = token => {
   const [bearer, code] = token.split(" ");
@@ -20,8 +21,14 @@ const findAuthUser = req => {
   }
 };
 
-const requestAuth = user => {
+const requestAuth = async user => {
   if (!user || !user._id) throw new Error("You are not auth!");
+
+  const me = await Company.findById(user._id);
+
+  if (!me) throw new Error("You are not auth!");
+
+  return me;
 };
 
 export default { findAuthUser, requestAuth };

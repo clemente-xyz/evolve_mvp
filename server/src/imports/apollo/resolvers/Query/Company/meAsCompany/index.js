@@ -1,12 +1,11 @@
-import { Company } from "../../../../../collections";
 import helpers from "../../../../../helpers";
 
 const { requestAuth } = helpers;
 
 export default async (_, args, { user }) => {
   try {
-    await requestAuth(user);
-    return Company.findById(user._id);
+    const me = await requestAuth(user);
+    return me;
   } catch (error) {
     throw error;
   }
