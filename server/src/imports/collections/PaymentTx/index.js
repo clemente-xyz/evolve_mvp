@@ -15,15 +15,13 @@ const PaymentTxSchema = new Schema(
       required: true
     },
     senderUser: {
-      type: String,
-      //type: Schema.Types.ObjectId,
-      //ref: "Company",
+      type: Schema.Types.ObjectId,
+      ref: "Company",
       required: true
     },
     receiverUser: {
-      type: String,
-      //type: Schema.Tyoes.ObjectId,
-      //ref: "Company",
+      type: Schema.Types.ObjectId,
+      ref: "Company",
       required: true
     },
     approved: Boolean

@@ -6,8 +6,8 @@ export default gql`
     sendingCripto: String!
     receivingCripto: String!
     amountInUsd: String!
-    senderUser: String!
-    receiverUser: String!
+    senderUser: Company!
+    receiverUser: Company!
     createdAt: Date
     updatedAt: Date
   }

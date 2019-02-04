@@ -6,8 +6,7 @@ export default gql`
       sendingCripto: String!
       receivingCripto: String!
       amountInUsd: Int!
-      senderUser: String!
-      receiverUser: String!
+      receiverUser: ID!
     ): PaymentTx
     changePaymentApprovementState(_id: ID!): PaymentTx
   }
