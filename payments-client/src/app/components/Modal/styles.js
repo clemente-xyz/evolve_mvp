@@ -13,4 +13,8 @@ const MainContainer = styled.div`
   text-align: center;
 `;
 
-export { MainContainer };
+const ButtonsContainer = styled.div`
+  margin: 30px 0;
+`;
+
+export { MainContainer, ButtonsContainer };

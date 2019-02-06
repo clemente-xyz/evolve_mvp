@@ -1,10 +1,10 @@
 import React from "react";
-import { MainContainer } from "./styles";
+import { MainContainer, ButtonsContainer } from "./styles";
 
 export default ({ title, content, buttons }) => (
   <MainContainer>
     <h1>{title}</h1>
     {content}
-    {buttons}
+    <ButtonsContainer>{buttons}</ButtonsContainer>
   </MainContainer>
 );
