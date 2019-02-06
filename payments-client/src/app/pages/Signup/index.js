@@ -5,9 +5,10 @@ import { MainContainer, TextInputContainer } from "./styles";
 import { Modal, Button, TextInput } from "../../components";
 import { colors } from "../../utils";
 
-const SignUp = ({ createCompany, data }) => {
+const SignUp = ({ createCompany }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
   const { blue, dark_blue, white } = colors;
 
@@ -19,12 +20,17 @@ const SignUp = ({ createCompany, data }) => {
     setPassword(event.target.value);
   };
 
+  const handleEmailChange = event => {
+    setEmail(event.target.value);
+  };
+
   const handleRegisterClick = event => {
     event.preventDefault();
-    createCompany({ variables: { username, password } });
+    createCompany({ variables: { username, password, email } });
     alert("Congrats! Now you are subscribed to Evolve");
     setUsername("");
     setPassword("");
+    setEmail("");
   };
 
   return (
@@ -49,6 +55,14 @@ const SignUp = ({ createCompany, data }) => {
                 handleChange={handlePasswordChange}
               />
             </TextInputContainer>
+            <TextInputContainer>
+              <TextInput
+                name="email"
+                type="text"
+                value={email}
+                handleChange={handleEmailChange}
+              />
+            </TextInputContainer>
           </>
         }
         buttons={
@@ -70,10 +84,8 @@ export default () => {
 
   return (
     <Mutation mutation={CREATE_COMPANY}>
-      {(createCompany, { data }) => {
-        console.log(typeof createCompany);
-
-        return <SignUp createCompany={createCompany} data={data} />;
+      {createCompany => {
+        return <SignUp createCompany={createCompany} />;
       }}
     </Mutation>
   );
