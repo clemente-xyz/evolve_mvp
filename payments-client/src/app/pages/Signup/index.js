@@ -44,6 +44,7 @@ const SignUp = ({ createCompany }) => {
                 name="username"
                 type="text"
                 value={username}
+                placeholder="Username"
                 handleChange={handleUsernameChange}
               />
             </TextInputContainer>
@@ -52,6 +53,7 @@ const SignUp = ({ createCompany }) => {
                 name="password"
                 type="password"
                 value={password}
+                placeholder="Password"
                 handleChange={handlePasswordChange}
               />
             </TextInputContainer>
@@ -60,6 +62,7 @@ const SignUp = ({ createCompany }) => {
                 name="email"
                 type="text"
                 value={email}
+                placeholder="Email"
                 handleChange={handleEmailChange}
               />
             </TextInputContainer>
