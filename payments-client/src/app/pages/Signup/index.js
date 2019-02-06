@@ -36,6 +36,7 @@ const SignUp = ({ createCompany, data }) => {
             <TextInputContainer>
               <TextInput
                 name="username"
+                type="text"
                 value={username}
                 handleChange={handleUsernameChange}
               />
@@ -43,6 +44,7 @@ const SignUp = ({ createCompany, data }) => {
             <TextInputContainer>
               <TextInput
                 name="password"
+                type="password"
                 value={password}
                 handleChange={handlePasswordChange}
               />
