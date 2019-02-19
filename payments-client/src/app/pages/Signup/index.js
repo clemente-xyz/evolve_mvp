@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Mutation } from "react-apollo";
 import { MUTATIONS } from "../../apollo";
 import { MainContainer, TextInputContainer } from "./styles";
-import { Modal, Button, TextInput } from "../../components";
+import { Card, Button, TextInput } from "../../components";
 import { colors } from "../../utils";
 
 const SignUp = ({ createCompany }) => {
@@ -35,7 +35,7 @@ const SignUp = ({ createCompany }) => {
 
   return (
     <MainContainer>
-      <Modal
+      <Card
         title="Sign up"
         content={
           <>
