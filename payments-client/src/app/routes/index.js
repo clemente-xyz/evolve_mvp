@@ -9,15 +9,36 @@ import {
 import { Navbar } from "../components";
 import { Home, Signup } from "../pages";
 
+const navRoutes = [
+  {
+    path: "/",
+    label: "Home"
+  },
+  {
+    path: "/signup",
+    label: "Sign Up"
+  },
+  {
+    path: "/signin",
+    label: "Sign In"
+  },
+  {
+    path: "/support",
+    label: "Support"
+  }
+];
+
 export default () => (
   <>
-    <Navbar logo="logo" brand="evolve" links={[{path: 'sdklfj', label: "link 1"}, {path: 'sddddklfj', label: "link 1"}, {path: 'sdsdfsfklfj', label: "link 1"}]}/>
     <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/signup" component={Signup} />
-        <Redirect to="/" />
-      </Switch>
+      <>
+        <Navbar logo="logo" brand="evolve" links={navRoutes} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/signup" component={Signup} />
+          <Redirect to="/" />
+        </Switch>
+      </>
     </Router>
   </>
 );

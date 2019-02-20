@@ -3,6 +3,7 @@ import React from "react";
 import {
   MainContainer,
   BrandContainer,
+  LinkContainer,
   PagesContainer,
   LogoContainer
 } from "./styles";
@@ -15,7 +16,9 @@ export default ({ logo, brand, links }) => (
     </BrandContainer>
     <PagesContainer>
       {links.map(({ path, label }) => (
-        <p key={path}>{label}</p>
+        <LinkContainer exact key={path} to={path}>
+          {label}
+        </LinkContainer>
       ))}
     </PagesContainer>
   </MainContainer>
