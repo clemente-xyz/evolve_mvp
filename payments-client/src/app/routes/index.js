@@ -8,6 +8,7 @@ import {
 
 import { Navbar } from "../components";
 import { Home, Signup } from "../pages";
+import { Logo } from "../assets";
 
 const navRoutes = [
   {
@@ -32,7 +33,7 @@ export default () => (
   <>
     <Router>
       <>
-        <Navbar logo="logo" brand="evolve" links={navRoutes} />
+        <Navbar logo={<Logo />} brand="evolve" links={navRoutes} />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/signup" component={Signup} />

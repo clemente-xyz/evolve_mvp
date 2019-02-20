@@ -3,6 +3,7 @@ import React from "react";
 import {
   MainContainer,
   BrandContainer,
+  BrandText,
   LinkContainer,
   PagesContainer,
   LogoContainer
@@ -12,7 +13,7 @@ export default ({ logo, brand, links }) => (
   <MainContainer>
     <BrandContainer>
       <LogoContainer>{logo}</LogoContainer>
-      <p>{brand}</p>
+      <BrandText>{brand}</BrandText>
     </BrandContainer>
     <PagesContainer>
       {links.map(({ path, label }) => (

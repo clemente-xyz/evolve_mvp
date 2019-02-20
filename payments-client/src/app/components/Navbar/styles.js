@@ -18,6 +18,10 @@ const BrandContainer = styled.div`
   align-items: center;
 `;
 
+const BrandText = styled.p`
+  font-weight: 900;
+`;
+
 const PagesContainer = styled.div`
   display: flex;
   flex: 0.3;
@@ -26,7 +30,9 @@ const PagesContainer = styled.div`
 `;
 
 const LogoContainer = styled.div`
-  margin-right: 40px;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
 `;
 
 const LinkContainer = styled(NavLink)`
@@ -54,6 +60,7 @@ LinkContainer.defaultProps = {
 export {
   MainContainer,
   BrandContainer,
+  BrandText,
   LinkContainer,
   PagesContainer,
   LogoContainer
