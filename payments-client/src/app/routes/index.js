@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import { Navbar } from "../components";
-import { Home, Signup } from "../pages";
+import { Home, Signup, Signin } from "../pages";
 import { Logo } from "../assets";
 
 const navRoutes = [
@@ -37,6 +37,7 @@ export default () => (
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/signup" component={Signup} />
+          <Route path="/signin" component={Signin} />
           <Redirect to="/" />
         </Switch>
       </>

@@ -1,8 +1,9 @@
 import React from "react";
 import { Container } from "./styles";
 
-export default ({ type, value, placeholder, handleChange }) => (
+export default ({ name, type, value, placeholder, handleChange }) => (
   <Container
+    name={name}
     type={type}
     value={value}
     placeholder={placeholder}
