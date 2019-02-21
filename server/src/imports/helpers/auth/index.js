@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import { verify } from "jsonwebtoken";
 import { Company } from "../../collections";
 
 const decodeToken = token => {
@@ -6,7 +6,7 @@ const decodeToken = token => {
 
   if (bearer !== "Bearer") throw new Error("Bad token format :(");
 
-  return jwt.verify(code, process.env.JWT_SECRET);
+  return verify(code, process.env.JWT_SECRET);
 };
 
 const findAuthUser = req => {
