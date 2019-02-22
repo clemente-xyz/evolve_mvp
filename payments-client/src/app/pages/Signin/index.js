@@ -9,7 +9,7 @@ import { colors } from "../../utils";
 const { SIGNIN_COMPANY } = MUTATIONS;
 const { white, blue, dark_blue } = colors;
 
-const Signin = ({ signinCompany }) => {
+const Signin = ({ signinCompanyMutation, loadingState, errorState }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,11 +29,13 @@ const Signin = ({ signinCompany }) => {
 
   const handleLoginClick = async () => {
     try {
-      const token = await signinCompany({
+      const { data } = await signinCompanyMutation({
         variables: { username, password }
       });
 
-      alert(`Token : ${token}`);
+      const token = data.signinCompany.token;
+
+      console.log(token);
     } catch (error) {
       alert(error);
     }
@@ -78,12 +80,20 @@ const Signin = ({ signinCompany }) => {
           />
         }
       />
+      {loadingState && <p>Loading...</p>}
+      {errorState && <p>Error!</p>}
     </MainContainer>
   );
 };
 
 export default () => (
   <Mutation mutation={SIGNIN_COMPANY}>
-    {signinCompany => <Signin signinCompany={signinCompany} />}
+    {(signinCompany, { loading, error }) => (
+      <Signin
+        signinCompanyMutation={signinCompany}
+        loadingState={loading}
+        errorState={error}
+      />
+    )}
   </Mutation>
 );
