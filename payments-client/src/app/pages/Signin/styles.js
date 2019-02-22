@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { colors } from "../../utils";
+
+const { red } = colors;
 
 const MainContainer = styled.div`
   padding: 60px 15%;
@@ -11,4 +14,8 @@ const TextInputContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-export { MainContainer, TextInputContainer };
+const ErrorText = styled.p`
+  color: ${red};
+`;
+
+export { ErrorText, MainContainer, TextInputContainer };

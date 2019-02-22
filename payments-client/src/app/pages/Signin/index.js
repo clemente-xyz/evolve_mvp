@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Mutation } from "react-apollo";
 
 import { MUTATIONS } from "../../apollo";
-import { MainContainer, TextInputContainer } from "./styles";
-import { Card, Button, TextInput } from "../../components";
+import { Card, Button, Loading, TextInput } from "../../components";
 import { colors } from "../../utils";
+import { ErrorText, MainContainer, TextInputContainer } from "./styles";
 
 const { SIGNIN_COMPANY } = MUTATIONS;
 const { white, blue, dark_blue } = colors;
@@ -12,6 +12,7 @@ const { white, blue, dark_blue } = colors;
 const Signin = ({ signinCompanyMutation, loadingState, errorState }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = event => {
     const target = event.target;
@@ -37,7 +38,7 @@ const Signin = ({ signinCompanyMutation, loadingState, errorState }) => {
 
       console.log(token);
     } catch (error) {
-      alert(error);
+      setErrorMessage(`${error.graphQLErrors[0].message} 😐`);
     }
 
     setUsername("");
@@ -68,20 +69,19 @@ const Signin = ({ signinCompanyMutation, loadingState, errorState }) => {
                 handleChange={handleInputChange}
               />
             </TextInputContainer>
+            {errorState && <ErrorText>{errorMessage}</ErrorText>}
           </>
         }
         buttons={
           <Button
             onClick={handleLoginClick}
-            text="Log in"
+            text={loadingState ? <Loading color={white} /> : "Log in"}
             backgroundColor={blue}
             hoverColor={dark_blue}
             textColor={white}
           />
         }
       />
-      {loadingState && <p>Loading...</p>}
-      {errorState && <p>Error!</p>}
     </MainContainer>
   );
 };

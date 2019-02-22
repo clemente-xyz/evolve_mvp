@@ -5,5 +5,6 @@ export default {
   dark_blue: "#005ce6",
   light_gray: "#f2f2f2",
   gray: "#cccccc",
-  dark_gray: "#4d4d4d"
+  dark_gray: "#4d4d4d",
+  red: "#ff4d4d"
 };
