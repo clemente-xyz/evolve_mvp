@@ -1,7 +1,6 @@
-import React from "react";
 import Apollo from "./apollo/client";
 import Routes from "./routes";
 
-const App = () => Apollo(<Routes />);
+const App = () => Apollo(Routes);
 
 export default App;

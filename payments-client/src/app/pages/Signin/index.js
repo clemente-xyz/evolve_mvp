@@ -30,13 +30,17 @@ const Signin = ({ signinCompanyMutation, loadingState, errorState }) => {
 
   const handleLoginClick = async () => {
     try {
-      const { data } = await signinCompanyMutation({
+      const {
+        data: { signinCompany }
+      } = await signinCompanyMutation({
         variables: { username, password }
       });
 
-      const token = data.signinCompany.token;
+      const token = signinCompany.token;
 
       console.log(token);
+
+      localStorage.setItem("token", token);
     } catch (error) {
       setErrorMessage(`${error.graphQLErrors[0].message} 😐`);
     }

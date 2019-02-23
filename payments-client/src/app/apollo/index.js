@@ -1,3 +1,4 @@
+import QUERIES from "./Query";
 import MUTATIONS from "./Mutation";
 
-export { MUTATIONS };
+export { QUERIES, MUTATIONS };
