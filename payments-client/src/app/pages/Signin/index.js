@@ -16,14 +16,13 @@ const Signin = ({
   errorState,
   history
 }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [username, setUsername] = useState(""),
+    [password, setPassword] = useState(""),
+    [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = event => {
-    const target = event.target;
-    const inputName = target.name;
-    const inputValue = target.value;
+  const handleInputChange = ({ target }) => {
+    const inputName = target.name,
+      inputValue = target.value;
 
     if (inputName === "username") {
       setUsername(inputValue);

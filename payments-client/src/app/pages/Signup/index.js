@@ -1,33 +1,39 @@
 import React, { useState } from "react";
 import { Mutation } from "react-apollo";
+
 import { MUTATIONS } from "../../apollo";
-import { MainContainer, TextInputContainer } from "./styles";
 import { Card, Button, TextInput } from "../../components";
 import { colors } from "../../utils";
+import { MainContainer, TextInputContainer } from "./styles";
+
+const { CREATE_COMPANY } = MUTATIONS;
+const { blue, dark_blue, white } = colors;
 
 const SignUp = ({ createCompany }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState(""),
+    [password, setPassword] = useState(""),
+    [email, setEmail] = useState("");
 
-  const { blue, dark_blue, white } = colors;
+  const handleInputChange = ({ target }) => {
+    const inputName = target.name,
+      inputValue = target.value;
 
-  const handleUsernameChange = event => {
-    setUsername(event.target.value);
-  };
-
-  const handlePasswordChange = event => {
-    setPassword(event.target.value);
-  };
-
-  const handleEmailChange = event => {
-    setEmail(event.target.value);
+    if (inputName === "username") {
+      setUsername(inputValue);
+    } else if (inputName === "password") {
+      setPassword(inputValue);
+    } else if (inputName === "email") {
+      setEmail(inputValue);
+    }
   };
 
   const handleRegisterClick = event => {
     event.preventDefault();
+
     createCompany({ variables: { username, password, email } });
+
     alert("Congrats! Now you are subscribed to Evolve");
+
     setUsername("");
     setPassword("");
     setEmail("");
@@ -45,7 +51,7 @@ const SignUp = ({ createCompany }) => {
                 type="text"
                 value={username}
                 placeholder="Username"
-                handleChange={handleUsernameChange}
+                handleChange={handleInputChange}
               />
             </TextInputContainer>
             <TextInputContainer>
@@ -54,7 +60,7 @@ const SignUp = ({ createCompany }) => {
                 type="password"
                 value={password}
                 placeholder="Password"
-                handleChange={handlePasswordChange}
+                handleChange={handleInputChange}
               />
             </TextInputContainer>
             <TextInputContainer>
@@ -63,7 +69,7 @@ const SignUp = ({ createCompany }) => {
                 type="text"
                 value={email}
                 placeholder="Email"
-                handleChange={handleEmailChange}
+                handleChange={handleInputChange}
               />
             </TextInputContainer>
           </>
@@ -82,14 +88,10 @@ const SignUp = ({ createCompany }) => {
   );
 };
 
-export default () => {
-  const { CREATE_COMPANY } = MUTATIONS;
-
-  return (
-    <Mutation mutation={CREATE_COMPANY}>
-      {createCompany => {
-        return <SignUp createCompany={createCompany} />;
-      }}
-    </Mutation>
-  );
-};
+export default () => (
+  <Mutation mutation={CREATE_COMPANY}>
+    {createCompany => {
+      return <SignUp createCompany={createCompany} />;
+    }}
+  </Mutation>
+);
