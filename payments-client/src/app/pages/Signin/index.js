@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Mutation } from "react-apollo";
+import { withRouter } from "react-router-dom";
 
 import { MUTATIONS } from "../../apollo";
 import { Card, Button, Loading, TextInput } from "../../components";
@@ -9,7 +10,12 @@ import { ErrorText, MainContainer, TextInputContainer } from "./styles";
 const { SIGNIN_COMPANY } = MUTATIONS;
 const { white, blue, dark_blue } = colors;
 
-const Signin = ({ signinCompanyMutation, loadingState, errorState }) => {
+const Signin = ({
+  signinCompanyMutation,
+  loadingState,
+  errorState,
+  history
+}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -38,8 +44,6 @@ const Signin = ({ signinCompanyMutation, loadingState, errorState }) => {
 
       const token = signinCompany.token;
 
-      console.log(token);
-
       localStorage.setItem("token", token);
     } catch (error) {
       setErrorMessage(`${error.graphQLErrors[0].message} 😐`);
@@ -47,6 +51,8 @@ const Signin = ({ signinCompanyMutation, loadingState, errorState }) => {
 
     setUsername("");
     setPassword("");
+
+    history.push("/");
   };
 
   return (
@@ -90,14 +96,17 @@ const Signin = ({ signinCompanyMutation, loadingState, errorState }) => {
   );
 };
 
-export default () => (
+const SigninWithMutation = props => (
   <Mutation mutation={SIGNIN_COMPANY}>
     {(signinCompany, { loading, error }) => (
       <Signin
         signinCompanyMutation={signinCompany}
         loadingState={loading}
         errorState={error}
+        {...props}
       />
     )}
   </Mutation>
 );
+
+export default withRouter(SigninWithMutation);
