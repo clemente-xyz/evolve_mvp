@@ -1,6 +1,7 @@
 import React from "react";
 
 import { constants } from "../../utils";
+import SignoutButton from "../SignoutButton";
 import { Logo } from "../../assets";
 import {
   MainContainer,
@@ -23,17 +24,23 @@ export default ({ myData }) => (
       <BrandText>{BRAND}</BrandText>
     </BrandContainer>
     <PagesContainer>
-      {!myData
-        ? NON_AUTH_LINKS.map(({ path, label }) => (
-            <LinkContainer exact key={path} to={path}>
-              {label}
-            </LinkContainer>
-          ))
-        : AUTH_LINKS.map(({ path, label }) => (
+      {!myData ? (
+        NON_AUTH_LINKS.map(({ path, label }) => (
+          <LinkContainer exact key={path} to={path}>
+            {label}
+          </LinkContainer>
+        ))
+      ) : (
+        <>
+          {AUTH_LINKS.map(({ label, path }) => (
             <LinkContainer exact key={path} to={path}>
               {label}
             </LinkContainer>
           ))}
+
+          <SignoutButton />
+        </>
+      )}
     </PagesContainer>
   </MainContainer>
 );

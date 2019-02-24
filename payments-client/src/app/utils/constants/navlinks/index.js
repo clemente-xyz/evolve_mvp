@@ -33,10 +33,6 @@ const AUTH_LINKS = [
   {
     label: "Settings",
     path: "/settings"
-  },
-  {
-    label: "Sign out",
-    path: "/"
   }
 ];
 
