@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Mutation } from "react-apollo";
 import { withRouter } from "react-router-dom";
 
-import { MUTATIONS } from "../../apollo";
-import { Card, Button, Loading, TextInput } from "../../components";
-import { colors } from "../../utils";
+import { MUTATIONS } from "../../../apollo";
+import { Card, Button, Loading, TextInput } from "../../../components";
+import { colors } from "../../../utils";
 import { ErrorText, MainContainer, TextInputContainer } from "./styles";
 
 const { SIGNIN_COMPANY } = MUTATIONS;
@@ -51,7 +51,7 @@ const Signin = ({
       setUsername("");
       setPassword("");
 
-      history.push("/");
+      history.push("/wallet");
     } catch (error) {
       setErrorMessage(`${error.graphQLErrors[0].message} 😐`);
       setUsername("");

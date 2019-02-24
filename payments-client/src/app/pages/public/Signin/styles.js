@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../utils";
+import { colors } from "../../../utils";
 
 const { red } = colors;
 

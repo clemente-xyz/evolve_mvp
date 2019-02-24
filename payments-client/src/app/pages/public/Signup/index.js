@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Mutation } from "react-apollo";
 import { withRouter } from "react-router-dom";
 
-import { MUTATIONS } from "../../apollo";
-import { Button, Card, Loading, TextInput } from "../../components";
-import { constants, colors } from "../../utils";
+import { MUTATIONS } from "../../../apollo";
+import { Button, Card, Loading, TextInput } from "../../../components";
+import { constants, colors } from "../../../utils";
 import { ErrorText, MainContainer, TextInputContainer } from "./styles";
 
 const { CREATE_COMPANY } = MUTATIONS;

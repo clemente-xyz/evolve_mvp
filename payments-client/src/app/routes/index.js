@@ -7,38 +7,24 @@ import {
 } from "react-router-dom";
 
 import { Navbar } from "../components";
-import { Home, Signup, Signin } from "../pages";
-import { Logo } from "../assets";
-
-const navRoutes = [
-  {
-    path: "/",
-    label: "Home"
-  },
-  {
-    path: "/signup",
-    label: "Sign Up"
-  },
-  {
-    path: "/signin",
-    label: "Sign In"
-  },
-  {
-    path: "/support",
-    label: "Support"
-  }
-];
+import { Home, Signup, Signin } from "../pages/public";
+import { Payments, Receipients, Settings, Wallet } from "../pages/auth";
 
 export default ({ data, refetch }) => (
   <>
     <Router>
       <>
-        <Navbar data={data} logo={<Logo />} brand="evolve" links={navRoutes} />
+        <Navbar myData={data} />
         <Switch>
-          <Route exact path="/" render={() => <Home myData={data} />} />
+          <Route exact path="/" render={() => <Home />} />
           <Route path="/signup" render={() => <Signup refetch={refetch} />} />
           <Route path="/signin" render={() => <Signin refetch={refetch} />} />
-          <Redirect to="/" />
+          <Route path="/payments" render={() => <Payments />} />
+          <Route path="/receipients" render={() => <Receipients />} />
+          <Route path="/settings" render={() => <Settings />} />
+          <Route path="/wallet" render={() => <Wallet myData={data} />} />
+
+          {!data ? <Redirect to="/" /> : <Redirect to="/wallet" />}
         </Switch>
       </>
     </Router>
