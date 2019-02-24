@@ -7,12 +7,12 @@ const { ME_AS_COMPANY } = QUERIES;
 
 const withSession = Component => props => (
   <Query query={ME_AS_COMPANY}>
-    {({ loading, data }) => {
+    {({ loading, data, refetch }) => {
       if (loading) return null;
 
       console.log(data);
 
-      return <Component {...props} />;
+      return <Component {...props} refetch={refetch} />;
     }}
   </Query>
 );

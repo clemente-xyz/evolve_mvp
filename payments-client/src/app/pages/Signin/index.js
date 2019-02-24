@@ -14,7 +14,8 @@ const Signin = ({
   signinCompanyMutation,
   loadingState,
   errorState,
-  history
+  history,
+  refetch
 }) => {
   const [username, setUsername] = useState(""),
     [password, setPassword] = useState(""),
@@ -44,6 +45,8 @@ const Signin = ({
       const token = signinCompany.token;
 
       localStorage.setItem("token", token);
+
+      await refetch();
 
       setUsername("");
       setPassword("");

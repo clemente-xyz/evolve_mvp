@@ -4,17 +4,19 @@ import { withRouter } from "react-router-dom";
 
 import { MUTATIONS } from "../../apollo";
 import { Button, Card, Loading, TextInput } from "../../components";
-import { colors } from "../../utils";
+import { constants, colors } from "../../utils";
 import { ErrorText, MainContainer, TextInputContainer } from "./styles";
 
 const { CREATE_COMPANY } = MUTATIONS;
+const { SUCCESS_REGISTRATION_MESSAGE } = constants;
 const { blue, dark_blue, white } = colors;
 
 const SignUp = ({
   createCompanyMutation,
   loadingState,
   errorState,
-  history
+  history,
+  refetch
 }) => {
   const [username, setUsername] = useState(""),
     [password, setPassword] = useState(""),
@@ -44,9 +46,11 @@ const SignUp = ({
 
       const token = createCompany.token;
 
-      alert("Congrats! Now you are subscribed to Evolve");
+      alert(SUCCESS_REGISTRATION_MESSAGE(username));
 
       localStorage.setItem("token", token);
+
+      await refetch();
 
       setUsername("");
       setPassword("");

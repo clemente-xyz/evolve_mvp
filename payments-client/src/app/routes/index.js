@@ -29,15 +29,15 @@ const navRoutes = [
   }
 ];
 
-export default () => (
+export default ({ refetch }) => (
   <>
     <Router>
       <>
         <Navbar logo={<Logo />} brand="evolve" links={navRoutes} />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/signin" component={Signin} />
+          <Route path="/signup" render={() => <Signup refetch={refetch} />} />
+          <Route path="/signin" render={() => <Signin refetch={refetch} />} />
           <Redirect to="/" />
         </Switch>
       </>
