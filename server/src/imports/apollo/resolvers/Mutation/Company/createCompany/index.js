@@ -7,6 +7,8 @@ export default async (_, args) => {
       token: company.createToken()
     };
   } catch (error) {
-    throw error;
+    throw new Error(
+      "You cannot register with those credentails. Please select others"
+    );
   }
 };
