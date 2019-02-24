@@ -33,7 +33,7 @@ export default ({ data, refetch }) => (
   <>
     <Router>
       <>
-        <Navbar logo={<Logo />} brand="evolve" links={navRoutes} />
+        <Navbar data={data} logo={<Logo />} brand="evolve" links={navRoutes} />
         <Switch>
           <Route exact path="/" render={() => <Home myData={data} />} />
           <Route path="/signup" render={() => <Signup refetch={refetch} />} />
