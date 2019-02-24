@@ -6,7 +6,7 @@ import { withSession } from "../components";
 
 export default app => {
   const client = new ApolloClient({
-    uri: "http://localhost:4000/graphql",
+    uri: process.env.REACT_APP_API_ENDPOINT,
     fetchOptions: {
       credentials: "include"
     },
