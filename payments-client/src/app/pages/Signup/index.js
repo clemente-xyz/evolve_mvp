@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import { Mutation } from "react-apollo";
+import { withRouter } from "react-router-dom";
 
 import { MUTATIONS } from "../../apollo";
-import { Card, Button, TextInput } from "../../components";
+import { Button, Card, Loading, TextInput } from "../../components";
 import { colors } from "../../utils";
-import { MainContainer, TextInputContainer } from "./styles";
+import { ErrorText, MainContainer, TextInputContainer } from "./styles";
 
 const { CREATE_COMPANY } = MUTATIONS;
 const { blue, dark_blue, white } = colors;
 
-const SignUp = ({ createCompany }) => {
+const SignUp = ({
+  createCompanyMutation,
+  loadingState,
+  errorState,
+  history
+}) => {
   const [username, setUsername] = useState(""),
     [password, setPassword] = useState(""),
-    [email, setEmail] = useState("");
+    [email, setEmail] = useState(""),
+    [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = ({ target }) => {
     const inputName = target.name,
@@ -27,16 +34,32 @@ const SignUp = ({ createCompany }) => {
     }
   };
 
-  const handleRegisterClick = event => {
-    event.preventDefault();
+  const handleRegisterClick = async () => {
+    try {
+      const {
+        data: { createCompany }
+      } = await createCompanyMutation({
+        variables: { username, password, email }
+      });
 
-    createCompany({ variables: { username, password, email } });
+      const token = createCompany.token;
 
-    alert("Congrats! Now you are subscribed to Evolve");
+      alert("Congrats! Now you are subscribed to Evolve");
 
-    setUsername("");
-    setPassword("");
-    setEmail("");
+      localStorage.setItem("token", token);
+
+      setUsername("");
+      setPassword("");
+      setEmail("");
+
+      history.push("/");
+    } catch (error) {
+      setErrorMessage(`${error.graphQLErrors[0].message} 😐`);
+
+      setUsername("");
+      setPassword("");
+      setEmail("");
+    }
   };
 
   return (
@@ -72,12 +95,14 @@ const SignUp = ({ createCompany }) => {
                 handleChange={handleInputChange}
               />
             </TextInputContainer>
+
+            {errorState ? <ErrorText>{errorMessage}</ErrorText> : null}
           </>
         }
         buttons={
           <Button
             onClick={handleRegisterClick}
-            text="Register"
+            text={loadingState ? <Loading color={white} /> : "Register"}
             backgroundColor={blue}
             hoverColor={dark_blue}
             textColor={white}
@@ -88,10 +113,17 @@ const SignUp = ({ createCompany }) => {
   );
 };
 
-export default () => (
+const SignupWithMutation = props => (
   <Mutation mutation={CREATE_COMPANY}>
-    {createCompany => {
-      return <SignUp createCompany={createCompany} />;
-    }}
+    {(createCompany, { loading, error }) => (
+      <SignUp
+        createCompanyMutation={createCompany}
+        loadingState={loading}
+        errorState={error}
+        {...props}
+      />
+    )}
   </Mutation>
 );
+
+export default withRouter(SignupWithMutation);

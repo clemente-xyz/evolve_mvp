@@ -44,14 +44,16 @@ const Signin = ({
       const token = signinCompany.token;
 
       localStorage.setItem("token", token);
+
+      setUsername("");
+      setPassword("");
+
+      history.push("/");
     } catch (error) {
       setErrorMessage(`${error.graphQLErrors[0].message} 😐`);
+      setUsername("");
+      setPassword("");
     }
-
-    setUsername("");
-    setPassword("");
-
-    history.push("/");
   };
 
   return (
