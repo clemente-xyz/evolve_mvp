@@ -2,6 +2,7 @@ import React from "react";
 
 import { constants } from "../../utils";
 import SignoutButton from "../SignoutButton";
+import Avatar from "../Avatar";
 import { Logo } from "../../assets";
 import {
   MainContainer,
@@ -37,7 +38,7 @@ export default ({ myData }) => (
               {label}
             </LinkContainer>
           ))}
-
+          <Avatar />
           <SignoutButton />
         </>
       )}
