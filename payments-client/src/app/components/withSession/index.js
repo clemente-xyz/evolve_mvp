@@ -9,8 +9,10 @@ const withSession = Component => props => (
   <Query query={ME_AS_COMPANY}>
     {({ loading, data, refetch }) => {
       if (loading) return null;
-      console.log("pico");
-      return <Component {...props} refetch={refetch} data={data} />;
+
+      const myData = data.meAsCompany;
+
+      return <Component {...props} refetch={refetch} myData={myData} />;
     }}
   </Query>
 );

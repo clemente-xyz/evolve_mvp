@@ -10,11 +10,11 @@ import { Navbar } from "../components";
 import { Home, Signup, Signin } from "../pages/public";
 import { Payments, Receipients, Settings, Wallet } from "../pages/auth";
 
-export default ({ data, refetch }) => (
+export default ({ myData, refetch }) => (
   <>
     <Router>
       <>
-        <Navbar myData={data} />
+        <Navbar myData={myData} />
         <Switch>
           <Route exact path="/" render={() => <Home />} />
           <Route path="/signup" render={() => <Signup refetch={refetch} />} />
@@ -22,9 +22,9 @@ export default ({ data, refetch }) => (
           <Route path="/payments" render={() => <Payments />} />
           <Route path="/receipients" render={() => <Receipients />} />
           <Route path="/settings" render={() => <Settings />} />
-          <Route path="/wallet" render={() => <Wallet myData={data} />} />
+          <Route path="/wallet" render={() => <Wallet myData={myData} />} />
 
-          {!data ? <Redirect to="/" /> : <Redirect to="/wallet" />}
+          {!myData ? <Redirect to="/" /> : <Redirect to="/wallet" />}
         </Switch>
       </>
     </Router>
