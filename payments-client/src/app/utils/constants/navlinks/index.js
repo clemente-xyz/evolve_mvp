@@ -29,10 +29,6 @@ const AUTH_LINKS = [
   {
     label: "Recipients",
     path: "/receipients"
-  },
-  {
-    label: "Settings",
-    path: "/settings"
   }
 ];
 

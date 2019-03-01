@@ -1,8 +1,7 @@
 import React from "react";
 
 import { constants } from "../../utils";
-import SignoutButton from "../SignoutButton";
-import Avatar from "../Avatar";
+import Dropdown from "./Dropdown";
 import { Logo } from "../../assets";
 import {
   MainContainer,
@@ -13,8 +12,8 @@ import {
   LogoContainer
 } from "./styles";
 
-const BRAND = "evolve";
-const { AUTH_LINKS, NON_AUTH_LINKS } = constants;
+const BRAND = "evolve",
+  { AUTH_LINKS, NON_AUTH_LINKS } = constants;
 
 export default ({ myData }) => (
   <MainContainer>
@@ -38,8 +37,7 @@ export default ({ myData }) => (
               {label}
             </LinkContainer>
           ))}
-          <Avatar />
-          <SignoutButton />
+          <Dropdown />
         </>
       )}
     </PagesContainer>
