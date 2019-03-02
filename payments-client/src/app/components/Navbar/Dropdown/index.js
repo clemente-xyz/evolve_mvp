@@ -6,7 +6,12 @@ import { Avatar, Menu } from "../../index";
 import { icons } from "../../../utils";
 import { DropdownButton, MainContainer } from "./styles";
 
-const { DownArrow, Exit } = icons;
+const {
+  DownArrow: DownArrowIcon,
+  Exit: ExitIcon,
+  Settings: SettingsIcon,
+  Information: InformationIcon
+} = icons;
 
 const actionsConstructor = (history, client) => {
   const handleSignOut = () => {
@@ -21,16 +26,18 @@ const actionsConstructor = (history, client) => {
     },
     {
       label: "Support",
-      onClick: () => alert("Support")
+      onClick: () => alert("Support"),
+      icon: <InformationIcon />
     },
     {
       label: "Settings",
-      onClick: () => alert("Settings")
+      onClick: () => alert("Settings"),
+      icon: <SettingsIcon />
     },
     {
       label: "Sign out",
       onClick: handleSignOut,
-      icon: <Exit />
+      icon: <ExitIcon />
     }
   ];
 };
@@ -48,7 +55,7 @@ const Dropdown = ({ history }) => {
         <MainContainer>
           <Avatar />
           <DropdownButton onClick={handleMenuClick}>
-            <DownArrow />
+            <DownArrowIcon />
           </DropdownButton>
           <Menu open={open} actions={actionsConstructor(history, client)} />
         </MainContainer>

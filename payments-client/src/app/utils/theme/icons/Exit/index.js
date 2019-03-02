@@ -6,8 +6,8 @@ import { Svg } from "./styles";
 const { gray, dark_gray } = colors;
 
 export default ({
-  height = "11px",
-  width = "11px",
+  height = "13px",
+  width = "13px",
   color = dark_gray,
   hoverColor = gray
 }) => (

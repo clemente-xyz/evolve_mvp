@@ -18,7 +18,6 @@ const MainContainer = styled.div`
 
 const LabelContainer = styled.div`
   cursor: pointer;
-  display: flex;
 
   &:hover {
     background-color: ${light_gray};
@@ -28,7 +27,7 @@ const LabelContainer = styled.div`
 
 const Label = styled.div`
   display: flex;
-  padding: 15px 10px;
+  padding: 15px 20px;
   font-size: 15px;
   color: ${dark_gray};
 `;
@@ -39,7 +38,9 @@ const Hr = styled.hr`
 `;
 
 const IconContainer = styled.div`
-  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
 `;
 
 export { MainContainer, LabelContainer, Label, Hr, IconContainer };
