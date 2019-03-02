@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 
 import { MainContainer } from "./styles";
 
-const handleSignoutClick = (client, history) => {
+const handleSignoutClick = (history, client) => {
   localStorage.clear();
   client.resetStore();
   history.push("/");
@@ -14,7 +14,7 @@ const SignoutButton = ({ history }) => {
   return (
     <ApolloConsumer>
       {client => (
-        <MainContainer onClick={() => handleSignoutClick(client, history)}>
+        <MainContainer onClick={() => handleSignoutClick(history, client)}>
           Sign out
         </MainContainer>
       )}

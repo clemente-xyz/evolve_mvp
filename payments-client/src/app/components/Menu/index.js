@@ -17,6 +17,7 @@ export default ({ open, actions, position = DEFAULT_POSITION }) => {
             </button>
           );
         } else {
+          console.log(typeof label);
           return label;
         }
       })}
