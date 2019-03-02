@@ -1,6 +1,7 @@
 import Auth from "./Auth";
-import Scalars from "./Scalars";
 import CompanyType from "./Company";
 import PaymentTxType from "./PaymentTx";
+import Scalars from "./Scalars";
+import WalletType from "./Wallet";
 
-export default [Auth, Scalars, CompanyType, PaymentTxType];
+export default [Auth, CompanyType, PaymentTxType, Scalars, WalletType];
