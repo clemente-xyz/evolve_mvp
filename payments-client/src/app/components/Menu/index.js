@@ -1,12 +1,6 @@
 import React from "react";
 
-import {
-  Hr,
-  IconContainer,
-  LabelContainer,
-  Label,
-  MainContainer
-} from "./styles";
+import { IconContainer, LabelContainer, Label, MainContainer } from "./styles";
 
 const DEFAULT_POSITION = "left";
 

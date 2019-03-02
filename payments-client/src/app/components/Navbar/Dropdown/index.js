@@ -13,7 +13,7 @@ const {
   Information: InformationIcon
 } = icons;
 
-const actionsConstructor = (history, client) => {
+const actionsConstructor = (myUsername, history, client) => {
   const handleSignOut = () => {
     localStorage.clear();
     client.resetStore();
@@ -21,7 +21,7 @@ const actionsConstructor = (history, client) => {
   };
   return [
     {
-      label: "Signed in as ...",
+      label: myUsername,
       onClick: null
     },
     {
@@ -42,7 +42,7 @@ const actionsConstructor = (history, client) => {
   ];
 };
 
-const Dropdown = ({ history }) => {
+const Dropdown = ({ myUsername, history }) => {
   const [open, setOpen] = useState(false);
 
   const handleMenuClick = () => {
@@ -57,7 +57,10 @@ const Dropdown = ({ history }) => {
           <DropdownButton onClick={handleMenuClick}>
             <DownArrowIcon />
           </DropdownButton>
-          <Menu open={open} actions={actionsConstructor(history, client)} />
+          <Menu
+            open={open}
+            actions={actionsConstructor(myUsername, history, client)}
+          />
         </MainContainer>
       )}
     </ApolloConsumer>

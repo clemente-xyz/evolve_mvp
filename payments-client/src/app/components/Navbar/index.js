@@ -37,7 +37,7 @@ export default ({ myData }) => (
               {label}
             </LinkContainer>
           ))}
-          <Dropdown />
+          <Dropdown myUsername={myData.username} />
         </>
       )}
     </PagesContainer>

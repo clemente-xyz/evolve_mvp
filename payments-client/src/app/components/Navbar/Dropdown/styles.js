@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-const MainContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-`;
-
 const DropdownButton = styled.button`
   background: none;
   margin-left: 10px;
@@ -12,6 +7,11 @@ const DropdownButton = styled.button`
   color: inherit;
   border: none;
   outline: inherit;
+`;
+
+const MainContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
 `;
 
 export { DropdownButton, MainContainer };

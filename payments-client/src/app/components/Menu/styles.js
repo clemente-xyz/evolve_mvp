@@ -27,14 +27,9 @@ const LabelContainer = styled.div`
 
 const Label = styled.div`
   display: flex;
-  padding: 15px 20px;
+  padding: 10px 20px;
   font-size: 15px;
   color: ${dark_gray};
-`;
-
-const Hr = styled.hr`
-  width: 100%;
-  border: 1px solid ${light_gray};
 `;
 
 const IconContainer = styled.div`
@@ -43,4 +38,4 @@ const IconContainer = styled.div`
   margin-right: 10px;
 `;
 
-export { MainContainer, LabelContainer, Label, Hr, IconContainer };
+export { MainContainer, LabelContainer, Label, IconContainer };
