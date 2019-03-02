@@ -1,10 +1,17 @@
 import React from "react";
+
 import { colors } from "../../../index";
+import { Svg } from "./styles";
 
-const { dark_gray } = colors;
+const { gray, dark_gray } = colors;
 
-export default ({ height = "11px", width = "11px", color = { dark_gray } }) => (
-  <svg
+export default ({
+  height = "11px",
+  width = "11px",
+  color = dark_gray,
+  hoverColor = gray
+}) => (
+  <Svg
     version="1.1"
     id="down-arrow"
     x="0px"
@@ -14,6 +21,7 @@ export default ({ height = "11px", width = "11px", color = { dark_gray } }) => (
     viewBox="0 0 307.053 307.053"
     space="preserve"
     fill={color}
+    hoverColor={hoverColor}
   >
     <g>
       <g id="_x34_86._Down">
@@ -41,5 +49,5 @@ export default ({ height = "11px", width = "11px", color = { dark_gray } }) => (
     <g />
     <g />
     <g />
-  </svg>
+  </Svg>
 );

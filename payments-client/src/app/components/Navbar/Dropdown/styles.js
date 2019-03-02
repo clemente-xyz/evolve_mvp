@@ -6,7 +6,12 @@ const MainContainer = styled.div`
 `;
 
 const DropdownButton = styled.button`
+  background: none;
   margin-left: 10px;
+  cursor: pointer;
+  color: inherit;
+  border: none;
+  outline: inherit;
 `;
 
 export { DropdownButton, MainContainer };
