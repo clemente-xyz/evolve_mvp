@@ -1,5 +1,6 @@
 import constants from "./constants";
-import colors from "./colors";
+import colors from "./theme/colors";
 import helpers from "./helpers";
+import icons from "./theme/icons";
 
-export { constants, colors, helpers };
+export { constants, colors, helpers, icons };

@@ -1,8 +1,12 @@
 import styled from "styled-components";
 
-const Container = styled.div`
+const MainContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
 `;
 
-export { Container };
+const DropdownButton = styled.button`
+  margin-left: 10px;
+`;
+
+export { DropdownButton, MainContainer };

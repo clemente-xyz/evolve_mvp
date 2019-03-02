@@ -3,7 +3,10 @@ import { ApolloConsumer } from "react-apollo";
 import { withRouter } from "react-router-dom";
 
 import { Avatar, Menu } from "../../index";
-import { Container } from "./styles";
+import { icons } from "../../../utils";
+import { DropdownButton, MainContainer } from "./styles";
+
+const { DownArrow } = icons;
 
 const actionsConstructor = (history, client) => {
   const handleSignOut = () => {
@@ -41,11 +44,13 @@ const Dropdown = ({ history }) => {
   return (
     <ApolloConsumer>
       {client => (
-        <Container>
+        <MainContainer>
           <Avatar />
-          <button onClick={handleMenuClick}>+</button>
+          <DropdownButton onClick={handleMenuClick}>
+            <DownArrow />
+          </DropdownButton>
           <Menu open={open} actions={actionsConstructor(history, client)} />
-        </Container>
+        </MainContainer>
       )}
     </ApolloConsumer>
   );
