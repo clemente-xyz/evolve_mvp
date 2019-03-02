@@ -6,7 +6,7 @@ import { Avatar, Menu } from "../../index";
 import { icons } from "../../../utils";
 import { DropdownButton, MainContainer } from "./styles";
 
-const { DownArrow } = icons;
+const { DownArrow, Exit } = icons;
 
 const actionsConstructor = (history, client) => {
   const handleSignOut = () => {
@@ -29,7 +29,8 @@ const actionsConstructor = (history, client) => {
     },
     {
       label: "Sign out",
-      onClick: handleSignOut
+      onClick: handleSignOut,
+      icon: <Exit />
     }
   ];
 };

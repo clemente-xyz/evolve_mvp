@@ -1,3 +1,4 @@
 import DownArrow from "./DownArrow";
+import Exit from "./Exit";
 
-export default { DownArrow };
+export default { DownArrow, Exit };

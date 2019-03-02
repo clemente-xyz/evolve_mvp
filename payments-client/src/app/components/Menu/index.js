@@ -1,6 +1,12 @@
 import React from "react";
 
-import { Container } from "./styles";
+import {
+  Hr,
+  IconContainer,
+  LabelContainer,
+  Label,
+  MainContainer
+} from "./styles";
 
 const DEFAULT_POSITION = "left";
 
@@ -8,19 +14,15 @@ export default ({ open, actions, position = DEFAULT_POSITION }) => {
   if (!open) return null;
 
   return (
-    <Container>
-      {actions.map(({ label, onClick }) => {
-        if (typeof label === "string") {
-          return (
-            <button key={label} onClick={onClick}>
-              {label}
-            </button>
-          );
-        } else {
-          console.log(typeof label);
-          return label;
-        }
-      })}
-    </Container>
+    <MainContainer>
+      {actions.map(({ label, icon, onClick }) => (
+        <LabelContainer key={label} onClick={onClick}>
+          <Label>
+            {icon ? <IconContainer>{icon}</IconContainer> : null}
+            {label}
+          </Label>
+        </LabelContainer>
+      ))}
+    </MainContainer>
   );
 };
