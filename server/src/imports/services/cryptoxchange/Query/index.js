@@ -1,11 +1,11 @@
 import Orionx from "orionx-sdk";
 
-const getMarkets = async () => {
+const getMarket = code => {
   try {
-    return await Orionx.market({ code: "LTCBTC" });
+    return Orionx.marketOrderBook({ marketCode: code, limit: 5 });
   } catch (error) {
     throw error;
   }
 };
 
-export default { getMarkets };
+export default { getMarket };

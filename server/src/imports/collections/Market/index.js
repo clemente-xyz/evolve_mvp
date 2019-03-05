@@ -4,7 +4,7 @@ import { model, Schema } from "mongoose";
 
 import { cryptoxchangeService } from "../../services";
 
-const { getMarkets } = cryptoxchangeService;
+const { getMarket } = cryptoxchangeService;
 
 const MarketSchema = new Schema(
   {
@@ -23,7 +23,8 @@ const MarketSchema = new Schema(
       required: true
     },
     secondaryCurrency: {
-      type: String,
+      type: String, //Schema.Types.ObjectId
+      //ref: Currency
       required: true
     }
   },
@@ -31,9 +32,11 @@ const MarketSchema = new Schema(
 );
 
 const populateCollection = async () => {
-  const res = getMarkets();
+  const res = await getMarket("BTCCLP");
   console.log(res);
 };
+
+populateCollection();
 
 // schedule("1 * * * * *", async () => {
 //   Orionx.markets()
