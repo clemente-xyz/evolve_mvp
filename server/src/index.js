@@ -1,5 +1,5 @@
-import "./config/db";
 import "./config/cryptoxchange";
+import "./config/db";
 import server from "./imports/apollo";
 
 server.listen().then(({ url }) => {

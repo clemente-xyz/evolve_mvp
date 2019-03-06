@@ -1,10 +1,9 @@
 import { model, Schema } from "mongoose";
 // import { schedule } from "node-cron";
-// import Orionx from "orionx-sdk";
 
-import { cryptoxchangeService } from "../../services";
+// import { cryptoxchangeService } from "../../services";
 
-const { getMarket } = cryptoxchangeService;
+// const { getMarkets, getMarket } = cryptoxchangeService;
 
 const MarketSchema = new Schema(
   {
@@ -31,12 +30,22 @@ const MarketSchema = new Schema(
   { timestamps: true }
 );
 
-const populateCollection = async () => {
-  const res = await getMarket("BTCCLP");
-  console.log(res);
-};
+// const populateCollection = async () => {
+//   const markets = await getMarkets();
+//   const reducedMarkets = reduceMarkets(markets);
 
-populateCollection();
+//   console.log(reducedMarkets);
+// };
+
+// const reduceMarkets = markets =>
+//   markets.map(({ code, name, mainCurrency, secondaryCurrency }) => ({
+//     code,
+//     name,
+//     primaryCurrency: mainCurrency.code,
+//     secondaryCurrency: secondaryCurrency.code
+//   }));
+
+// console.log(populateCollection());
 
 // schedule("1 * * * * *", async () => {
 //   Orionx.markets()

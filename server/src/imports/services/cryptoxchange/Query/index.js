@@ -1,5 +1,13 @@
 import Orionx from "orionx-sdk";
 
+const getMarkets = () => {
+  try {
+    return Orionx.markets();
+  } catch (error) {
+    throw error;
+  }
+};
+
 const getMarket = code => {
   try {
     return Orionx.marketOrderBook({ marketCode: code, limit: 5 });
@@ -8,4 +16,4 @@ const getMarket = code => {
   }
 };
 
-export default { getMarket };
+export default { getMarkets, getMarket };
