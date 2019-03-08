@@ -8,9 +8,12 @@ const getMarkets = () => {
   }
 };
 
-const getMarket = code => {
+const getMarket = (code, market_order_limit = 1) => {
   try {
-    return Orionx.marketOrderBook({ marketCode: code, limit: 5 });
+    return Orionx.marketOrderBook({
+      marketCode: code,
+      limit: market_order_limit
+    });
   } catch (error) {
     throw error;
   }

@@ -20,6 +20,16 @@ const MarketSchema = new Schema(
       type: String, //Schema.Types.ObjectId
       //ref: Currency
       required: true
+    },
+    primaryCurrencyPrices: {
+      buy: {
+        type: Number,
+        required: true
+      },
+      sell: {
+        type: Number,
+        required: true
+      }
     }
   },
   { timestamps: true }
