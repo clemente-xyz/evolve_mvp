@@ -14,27 +14,27 @@ export default async () => {
 
   const marketsUpdate = await updateMarkets(currentMarkets, getMarket);
 
-  console.log(marketsUpdate);
+  !marketsUpdate
+    ? markets.map(async ({ code, name, mainCurrency, secondaryCurrency }) => {
+        const marketDetails = await getMarket(code);
 
-  markets.map(async ({ code, name, mainCurrency, secondaryCurrency }) => {
-    const marketDetails = await getMarket(code);
+        const primaryCurrencyBuyPrice = marketDetails.buy[0].limitPrice,
+          primaryCurrencySellPrice = marketDetails.sell[0].limitPrice;
 
-    const primaryCurrencyBuyPrice = marketDetails.buy[0].limitPrice,
-      primaryCurrencySellPrice = marketDetails.sell[0].limitPrice;
+        const reducedMarket = {
+          code,
+          name,
+          primaryCurrency: mainCurrency.code,
+          secondaryCurrency: secondaryCurrency.code,
+          primaryCurrencyPrices: {
+            buy: primaryCurrencyBuyPrice,
+            sell: primaryCurrencySellPrice
+          }
+        };
 
-    const reducedMarket = {
-      code,
-      name,
-      primaryCurrency: mainCurrency.code,
-      secondaryCurrency: secondaryCurrency.code,
-      primaryCurrencyPrices: {
-        buy: primaryCurrencyBuyPrice,
-        sell: primaryCurrencySellPrice
-      }
-    };
-
-    //await Market.create(reducedMarket);
-  });
+        await Market.create(reducedMarket);
+      })
+    : console.log("collection already populated");
 };
 
 // schedule("1 * * * * *", async () => {
