@@ -4,7 +4,7 @@ import { Market } from "../../../../imports/collections";
 import helpers from "../../../../imports/helpers";
 import { cryptoxchangeService } from "../../../../imports/services";
 
-const { updateMarkets } = helpers;
+const { getUpdatedMarkets } = helpers;
 const { getMarkets, getMarket } = cryptoxchangeService;
 
 export default async () => {
@@ -12,9 +12,9 @@ export default async () => {
 
   const currentMarkets = await Market.find({});
 
-  const marketsUpdate = await updateMarkets(currentMarkets, getMarket);
+  const updatedMarkets = await getUpdatedMarkets(currentMarkets, getMarket);
 
-  !marketsUpdate
+  !updatedMarkets
     ? markets.map(async ({ code, name, mainCurrency, secondaryCurrency }) => {
         const marketDetails = await getMarket(code);
 

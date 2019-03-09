@@ -1,7 +1,7 @@
 const findNewMarketPrices = (newMarkets, code) =>
   newMarkets.find(newMarket => newMarket.code === code);
 
-const updateMarkets = (currentMarkets, getMarketFunction) => {
+const getUpdatedMarkets = (currentMarkets, getMarketFunction) => {
   if (currentMarkets.length === 0) return null;
 
   return Promise.all(
@@ -39,4 +39,4 @@ const updateMarkets = (currentMarkets, getMarketFunction) => {
   );
 };
 
-export default { findNewMarketPrices, updateMarkets };
+export default { findNewMarketPrices, getUpdatedMarkets };
