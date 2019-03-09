@@ -1,12 +1,21 @@
 // import { schedule } from "node-cron";
 
 import { Market } from "../../../../imports/collections";
+import helpers from "../../../../imports/helpers";
 import { cryptoxchangeService } from "../../../../imports/services";
 
+const { updateMarkets } = helpers;
 const { getMarkets, getMarket } = cryptoxchangeService;
 
 export default async () => {
   const markets = await getMarkets();
+
+  const currentMarkets = await Market.find({});
+
+  const marketsUpdate = await updateMarkets(currentMarkets, getMarket);
+
+  console.log(marketsUpdate);
+
   markets.map(async ({ code, name, mainCurrency, secondaryCurrency }) => {
     const marketDetails = await getMarket(code);
 
@@ -24,7 +33,7 @@ export default async () => {
       }
     };
 
-    await Market.create(reducedMarket);
+    //await Market.create(reducedMarket);
   });
 };
 
