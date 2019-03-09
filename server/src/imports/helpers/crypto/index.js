@@ -4,7 +4,7 @@ const findNewMarketPrices = (newMarkets, code) =>
 const getUpdatedMarkets = (currentMarkets, getMarketFunction) => {
   if (currentMarkets.length === 0) return null;
 
-  return Promise.all(
+  const updatedMarkets = Promise.all(
     currentMarkets.map(async ({ code }) => {
       const marketDetails = await getMarketFunction(code);
       return {
@@ -37,6 +37,10 @@ const getUpdatedMarkets = (currentMarkets, getMarketFunction) => {
       []
     )
   );
+
+  if (updatedMarkets.lenght === 0) return null;
+
+  return updatedMarkets;
 };
 
 export default { findNewMarketPrices, getUpdatedMarkets };

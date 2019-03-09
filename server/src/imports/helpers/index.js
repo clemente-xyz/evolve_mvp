@@ -1,4 +1,4 @@
 import auth from "./auth";
-import criptoxchanges from "./criptoxchanges";
+import crypto from "./crypto";
 
-export default { ...auth, ...criptoxchanges };
+export default { ...auth, ...crypto };

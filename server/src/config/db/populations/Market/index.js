@@ -34,7 +34,7 @@ export default async () => {
 
         await Market.create(reducedMarket);
       })
-    : console.log("collection already populated");
+    : console.log("Market collection needs to be updated");
 };
 
 // schedule("1 * * * * *", async () => {
