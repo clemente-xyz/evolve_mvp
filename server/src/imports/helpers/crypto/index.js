@@ -1,46 +1,40 @@
-const findNewMarketPrices = (newMarkets, code) =>
-  newMarkets.find(newMarket => newMarket.code === code);
+import { cryptoxchangeService } from "../../services";
 
-const getUpdatedMarkets = (currentMarkets, getMarketFunction) => {
-  if (currentMarkets.length === 0) return null;
+const { getMarkets, getMarket } = cryptoxchangeService;
 
-  const updatedMarkets = Promise.all(
-    currentMarkets.map(async ({ code }) => {
-      const marketDetails = await getMarketFunction(code);
-      return {
-        code,
-        buy: marketDetails.buy[0].limitPrice,
-        sell: marketDetails.sell[0].limitPrice
-      };
-    })
-  ).then(newMarkets =>
-    currentMarkets.reduce(
-      (acc, { code, primaryCurrencyPrices: { buy, sell } }) => {
-        const newMarketPrices = findNewMarketPrices(newMarkets, code);
+const populateMarkets = async MarketCollection => {
+  const markets = await getMarkets();
 
-        if (newMarketPrices.sell !== sell) {
-          acc.push({
-            code,
-            sell
-          });
-        }
+  markets.map(async ({ code, name, mainCurrency, secondaryCurrency }) => {
+    const marketDetails = await getMarket(code);
 
-        if (newMarketPrices.buy !== buy) {
-          acc.push({
-            code,
-            buy
-          });
-        }
+    const primaryCurrencyBuyPrice = marketDetails.buy[0].limitPrice,
+      primaryCurrencySellPrice = marketDetails.sell[0].limitPrice;
 
-        return acc;
-      },
-      []
-    )
-  );
+    const reducedMarket = {
+      code,
+      name,
+      primaryCurrency: mainCurrency.code,
+      secondaryCurrency: secondaryCurrency.code,
+      primaryCurrencyPrices: {
+        buy: primaryCurrencyBuyPrice,
+        sell: primaryCurrencySellPrice
+      }
+    };
+    const newMarket = await MarketCollection.create(reducedMarket);
 
-  if (updatedMarkets.lenght === 0) return null;
-
-  return updatedMarkets;
+    console.log("Created market: ", newMarket);
+  });
 };
 
-export default { findNewMarketPrices, getUpdatedMarkets };
+const updateMarkets = async MarketCollection => {
+  try {
+    await MarketCollection.deleteMany({});
+
+    populateMarkets(MarketCollection);
+  } catch (error) {
+    return error;
+  }
+};
+
+export default { populateMarkets, updateMarkets };
