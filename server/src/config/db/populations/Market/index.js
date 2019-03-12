@@ -1,31 +1,19 @@
 // import { schedule } from "node-cron";
 
 import { Market } from "../../../../imports/collections";
-import { cryptoxchangeService } from "../../../../imports/services";
+import helpers from "../../../../imports/helpers";
 
-const { getMarkets, getMarket } = cryptoxchangeService;
+const { populateMarkets, updateMarkets } = helpers;
 
 export default async () => {
-	const markets = await getMarkets();
-	markets.map(async ({ code, name, mainCurrency, secondaryCurrency }) => {
-		const marketDetails = await getMarket(code);
+	const currentMarkets = await Market.find({});
 
-		const primaryCurrencyBuyPrice = marketDetails.buy[0].limitPrice,
-			primaryCurrencySellPrice = marketDetails.sell[0].limitPrice;
+	if (!currentMarkets) {
+		populateMarkets(Market);
+	}
 
-		const reducedMarket = {
-			code,
-			name,
-			primaryCurrency: mainCurrency.code,
-			secondaryCurrency: secondaryCurrency.code,
-			primaryCurrencyPrices: {
-				buy: primaryCurrencyBuyPrice,
-				sell: primaryCurrencySellPrice
-			}
-		};
-
-		await Market.create(reducedMarket);
-	});
+	console.log("No markets updated");
+	updateMarkets(Market);
 };
 
 //Important: add method refreshData that will be called every time client calls GET_MARKETS query
