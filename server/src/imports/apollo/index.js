@@ -8,6 +8,6 @@ const { findAuthUser } = helpers;
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 
 export default new ApolloServer({
-  schema,
-  context: async ({ req }) => ({ user: await findAuthUser(req) })
+	schema,
+	context: async ({ req }) => ({ user: await findAuthUser(req) })
 });
