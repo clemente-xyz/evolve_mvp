@@ -9,18 +9,17 @@ const populateMarkets = async MarketCollection => {
 		markets.map(async ({ code, name, mainCurrency, secondaryCurrency }) => {
 			const marketDetails = await getMarket(code);
 
-			const primaryCurrencyBuyPrice = marketDetails.buy[0].limitPrice,
-				primaryCurrencySellPrice = marketDetails.sell[0].limitPrice;
+			//Orionx api ref error (buy end sell attr names changed)
+			const primaryCurrencyBuyPrice = marketDetails.sell[0].limitPrice,
+				primaryCurrencySellPrice = marketDetails.buy[0].limitPrice;
 
 			const reducedMarket = {
 				code,
 				name,
 				primaryCurrency: mainCurrency.code,
 				secondaryCurrency: secondaryCurrency.code,
-				primaryCurrencyPrices: {
-					buy: primaryCurrencyBuyPrice,
-					sell: primaryCurrencySellPrice
-				}
+				primaryCurBuyPrice: primaryCurrencyBuyPrice,
+				primaryCurSellPrice: primaryCurrencySellPrice
 			};
 
 			return reducedMarket;
@@ -34,7 +33,8 @@ const populateMarkets = async MarketCollection => {
 
 const updateMarkets = async MarketCollection => {
 	try {
-		console.log("updating markets...");
+		console.log("📊 Updating markets...");
+
 		await MarketCollection.deleteMany({});
 
 		populateMarkets(MarketCollection);

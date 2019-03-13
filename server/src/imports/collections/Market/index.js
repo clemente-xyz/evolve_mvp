@@ -7,29 +7,32 @@ const MarketSchema = new Schema(
 			required: true,
 			unique: true
 		},
+
 		name: {
 			type: String,
 			required: true
 		},
+
 		primaryCurrency: {
 			type: String, //Schema.Types.ObjectId
 			//ref: Currency
 			required: true
 		},
+
 		secondaryCurrency: {
 			type: String, //Schema.Types.ObjectId
 			//ref: Currency
 			required: true
 		},
-		primaryCurrencyPrices: {
-			buy: {
-				type: Number,
-				required: true
-			},
-			sell: {
-				type: Number,
-				required: true
-			}
+
+		primaryCurBuyPrice: {
+			type: Number,
+			required: true
+		},
+
+		primaryCurSellPrice: {
+			type: Number,
+			required: true
 		}
 	},
 	{ timestamps: true }
