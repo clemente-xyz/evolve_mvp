@@ -10,10 +10,9 @@ export default async () => {
 
 	if (!currentMarkets) {
 		populateMarkets(Market);
+	} else {
+		updateMarkets(Market);
 	}
-
-	console.log("No markets updated");
-	updateMarkets(Market);
 };
 
 //Important: add method refreshData that will be called every time client calls GET_MARKETS query
