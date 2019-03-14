@@ -2,7 +2,7 @@ import React from "react";
 import { Query } from "react-apollo";
 
 import { QUERIES } from "../../../apollo";
-import { Card } from "../../../components";
+import { Card, MarketsCard } from "../../../components";
 import {
   CryptoFundsContainer,
   BalanceContainer,
@@ -30,7 +30,7 @@ const Wallet = ({ userData, walletData }) => {
         />
       </BalanceContainer>
       <MarketContainer>
-        <Card title="Markets" content={<p>Pending markets</p>} buttons={null} />
+        <MarketsCard />
       </MarketContainer>
     </MainContainer>
   );

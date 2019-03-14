@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-import { colors } from "../../../utils";
-
-const { white } = colors;
-
 const MainContainer = styled.div`
   display: flex;
   justify-content: space-between;
