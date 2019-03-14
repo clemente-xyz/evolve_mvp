@@ -35,7 +35,11 @@ const populateMarkets = async MarketCollection => {
 
   const populatedMarkets = await Promise.all(
     newMarkets.map(async newMarket => {
-      return await MarketCollection.create(newMarket);
+      try {
+        return await MarketCollection.create(newMarket);
+      } catch (error) {
+        throw error;
+      }
     })
   );
 
