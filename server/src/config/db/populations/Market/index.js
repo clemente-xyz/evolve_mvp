@@ -8,7 +8,7 @@ const { populateMarkets, updateMarkets } = helpers;
 export default async () => {
 	const currentMarkets = await Market.find({});
 
-	if (!currentMarkets) {
+	if (!currentMarkets || currentMarkets.length === 0) {
 		populateMarkets(Market);
 	} else {
 		updateMarkets(Market);
