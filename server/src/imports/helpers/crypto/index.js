@@ -50,7 +50,7 @@ const updateMarkets = async MarketCollection => {
   try {
     await MarketCollection.deleteMany({});
 
-    populateMarkets(MarketCollection);
+    await populateMarkets(MarketCollection);
 
     console.log("📊 Markets updated!");
   } catch (error) {
