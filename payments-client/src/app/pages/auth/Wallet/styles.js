@@ -6,11 +6,19 @@ const MainContainer = styled.div`
   padding: 60px 50px;
 `;
 
-const CryptoFundsContainer = styled.div``;
+const CryptoFundsContainer = styled.div`
+  flex: 0.3;
+  margin-right: 20px;
+`;
 
-const BalanceContainer = styled.div``;
+const BalanceContainer = styled.div`
+  flex: 0.4;
+  margin-right: 20px;
+`;
 
-const MarketContainer = styled.div``;
+const MarketContainer = styled.div`
+  flex: 0.3;
+`;
 
 export {
   CryptoFundsContainer,
