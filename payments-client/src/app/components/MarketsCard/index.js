@@ -4,19 +4,24 @@ import { Query } from "react-apollo";
 import { QUERIES } from "../../apollo";
 import { filterMarketsByPrimaryCur } from "./helpers";
 import Card from "../Card";
+import { icons } from "../../utils";
 
 const { GET_MARKETS } = QUERIES;
 
+const { Bitcoin } = icons;
+
 const MarketsCard = ({ markets }) => {
   const [activeMarket, setActiveMarket] = useState("CLP");
-  const filteredMarkets = filterMarketsByPrimaryCur("CLP", markets);
+  const filteredMarkets = filterMarketsByPrimaryCur(activeMarket, markets);
 
   return (
     <Card
       title="Markets"
       content={
         <>
-          <p>Chilean market (CLP)</p>
+          <p>
+            Chilean market (CLP) <Bitcoin />
+          </p>
           {filteredMarkets.map(({ _id, name, primaryCurBuyPrice }) => {
             const [primaryCurName, secondaryCurName] = name.split("/");
 
