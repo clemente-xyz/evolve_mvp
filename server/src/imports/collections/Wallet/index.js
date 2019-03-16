@@ -24,4 +24,14 @@ const WalletSchema = new Schema(
   { timestamps: true }
 );
 
+WalletSchema.pre("save", function(next) {
+  if (this.isNew) {
+    this.balance = 0;
+
+    return next();
+  }
+
+  return next();
+});
+
 export default model("Wallet", WalletSchema);
