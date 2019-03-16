@@ -1,6 +1,6 @@
 import React from "react";
 
-import { colors } from "../../../index";
+import colors from "../../colors";
 import { Svg } from "./styles";
 
 const { gray, dark_gray } = colors;

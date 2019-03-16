@@ -2,31 +2,29 @@ import React, { useState } from "react";
 import { Query } from "react-apollo";
 
 import { QUERIES } from "../../apollo";
-import { filterMarketsByPrimaryCur } from "./helpers";
 import Card from "../Card";
-import { icons } from "../../utils";
+import { helpers } from "../../utils";
 
 const { GET_MARKETS } = QUERIES;
 
-const { Dai } = icons;
+const { filterMarketsByPrimaryCur, getCurrencyIcon } = helpers;
 
 const MarketsCard = ({ markets }) => {
   const [activeMarket, setActiveMarket] = useState("CLP");
   const filteredMarkets = filterMarketsByPrimaryCur(activeMarket, markets);
-
   return (
     <Card
       title="Markets"
       content={
         <>
-          <p>
-            Chilean market (CLP) <Dai />
-          </p>
+          <p>Chilean market (CLP)</p>
           {filteredMarkets.map(({ _id, name, primaryCurBuyPrice }) => {
             const [primaryCurName, secondaryCurName] = name.split("/");
+            const currencyIcon = getCurrencyIcon(primaryCurName);
 
             return (
               <p key={_id}>
+                {currencyIcon}
                 {primaryCurName} at {primaryCurBuyPrice} {secondaryCurName}
               </p>
             );
