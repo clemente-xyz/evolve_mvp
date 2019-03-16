@@ -22,6 +22,7 @@ const {
 const MarketsCard = ({ markets }) => {
   const [activeMarket, setActiveMarket] = useState("CLP");
   const filteredMarkets = filterMarketsByPrimaryCur(activeMarket, markets);
+
   return (
     <Card
       title="Markets"

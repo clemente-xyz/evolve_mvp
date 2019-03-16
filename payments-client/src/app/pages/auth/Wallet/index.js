@@ -2,7 +2,8 @@ import React from "react";
 import { Query } from "react-apollo";
 
 import { QUERIES } from "../../../apollo";
-import { Card, MarketsCard } from "../../../components";
+import { Card, MarketsCard as Markets } from "../../../components";
+import Balance from "./Balance";
 import {
   CryptoFundsContainer,
   BalanceContainer,
@@ -12,25 +13,19 @@ import {
 
 const { GET_WALLET } = QUERIES;
 
-const Wallet = ({ userData, walletData }) => {
+const Wallet = ({ myData, myWallet }) => {
+  const myBalance = myWallet.getWallet.balance;
+
   return (
     <MainContainer>
       <CryptoFundsContainer>
-        <Card
-          title="Crypto funds"
-          content={<p>Pending cryptos</p>}
-          buttons={null}
-        />
+        <Card title="Funds" content={<p>Pending cryptos</p>} buttons={null} />
       </CryptoFundsContainer>
       <BalanceContainer>
-        <Card
-          title="Balance"
-          content={<p>{walletData.getWallet.balance} CLP</p>}
-          buttons={null}
-        />
+        <Balance balanceAmount={myBalance} />
       </BalanceContainer>
       <MarketContainer>
-        <MarketsCard />
+        <Markets />
       </MarketContainer>
     </MainContainer>
   );
@@ -43,7 +38,7 @@ export default ({ myData }) => (
 
       if (error) return <p>Error!</p>;
 
-      return <Wallet userData={myData} walletData={data} />;
+      return <Wallet myData={myData} myWallet={data} />;
     }}
   </Query>
 );
