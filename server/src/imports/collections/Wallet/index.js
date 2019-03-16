@@ -11,6 +11,10 @@ const WalletSchema = new Schema(
       ref: "Company",
       required: true,
       unique: true
+    },
+    funds: {
+      type: [Schema.Types.ObjectId],
+      ref: "Fund"
     }
     // transactions: {
     //   type: [Schema.Types.ObjectId],
