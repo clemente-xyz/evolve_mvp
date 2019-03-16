@@ -8,7 +8,7 @@ import { icons } from "../../utils";
 
 const { GET_MARKETS } = QUERIES;
 
-const { Bitcoin } = icons;
+const { Dai } = icons;
 
 const MarketsCard = ({ markets }) => {
   const [activeMarket, setActiveMarket] = useState("CLP");
@@ -20,7 +20,7 @@ const MarketsCard = ({ markets }) => {
       content={
         <>
           <p>
-            Chilean market (CLP) <Bitcoin />
+            Chilean market (CLP) <Dai />
           </p>
           {filteredMarkets.map(({ _id, name, primaryCurBuyPrice }) => {
             const [primaryCurName, secondaryCurName] = name.split("/");
