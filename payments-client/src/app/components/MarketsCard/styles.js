@@ -17,9 +17,8 @@ const MarketDetailsContainer = styled.div`
 
 const CurrencyDetailsContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  text-align: left;
-  font-size: 14px;
+  justify-content: space-between;
+  width: 100%;
   cursor: default;
 `;
 
@@ -29,7 +28,6 @@ const CurrencyIconContainer = styled.div`
 `;
 
 const CurrencyName = styled.div`
-  margin-bottom: 3px;
   cursor: default;
 `;
 
