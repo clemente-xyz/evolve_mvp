@@ -25,7 +25,10 @@ const MarketsCard = ({ markets }) => {
 
   return (
     <Card
-      title="Markets"
+      title={{
+        text: "Markets",
+        alignment: "left"
+      }}
       content={
         <>
           <p>Chilean market (CLP)</p>

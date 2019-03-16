@@ -19,7 +19,14 @@ const Wallet = ({ myData, myWallet }) => {
   return (
     <MainContainer>
       <CryptoFundsContainer>
-        <Card title="Funds" content={<p>Pending cryptos</p>} buttons={null} />
+        <Card
+          title={{
+            text: "Funds",
+            alignment: "left"
+          }}
+          content={<p>Pending cryptos</p>}
+          buttons={null}
+        />
       </CryptoFundsContainer>
       <BalanceContainer>
         <Balance balanceAmount={myBalance} />

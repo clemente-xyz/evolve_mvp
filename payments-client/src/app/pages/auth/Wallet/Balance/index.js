@@ -8,7 +8,10 @@ const { white, green, dark_green, blue, dark_blue } = colors;
 export default ({ balanceAmount }) => {
   return (
     <Card
-      title="Balance"
+      title={{
+        text: "Balance",
+        alignment: "left"
+      }}
       content={<p>{balanceAmount} CLP</p>}
       buttons={
         <>

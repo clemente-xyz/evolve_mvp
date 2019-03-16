@@ -69,7 +69,10 @@ const SignUp = ({
   return (
     <MainContainer>
       <Card
-        title="Sign up"
+        title={{
+          text: "Sign up",
+          alignment: "center"
+        }}
         content={
           <>
             <TextInputContainer>
