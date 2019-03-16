@@ -13,7 +13,11 @@ import {
 
 const { GET_MARKETS } = QUERIES;
 
-const { filterMarketsByPrimaryCur, getCurrencyIcon } = helpers;
+const {
+  filterMarketsByPrimaryCur,
+  formatAmount,
+  getCurrencyNameAndIcon
+} = helpers;
 
 const MarketsCard = ({ markets }) => {
   const [activeMarket, setActiveMarket] = useState("CLP");
@@ -26,16 +30,20 @@ const MarketsCard = ({ markets }) => {
           <p>Chilean market (CLP)</p>
           {filteredMarkets.map(({ _id, name, primaryCurBuyPrice }) => {
             const [primaryCurName, secondaryCurName] = name.split("/");
-            const currencyIcon = getCurrencyIcon(primaryCurName);
+            const {
+              name: currencyName,
+              icon: currencyIcon
+            } = getCurrencyNameAndIcon(primaryCurName);
+            const primaryCurrencyPrice = formatAmount(primaryCurBuyPrice);
 
             return (
               <MarketDetailsContainer key={_id}>
                 <CurrencyIconContainer>{currencyIcon}</CurrencyIconContainer>
 
                 <CurrencyDetailsContainer>
-                  <CurrencyName>{primaryCurName}</CurrencyName>
+                  <CurrencyName>{currencyName}</CurrencyName>
                   <div>
-                    {primaryCurBuyPrice} {secondaryCurName}
+                    {primaryCurrencyPrice} {secondaryCurName}
                   </div>
                 </CurrencyDetailsContainer>
               </MarketDetailsContainer>

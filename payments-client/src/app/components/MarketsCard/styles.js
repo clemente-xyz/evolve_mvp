@@ -1,9 +1,18 @@
 import styled from "styled-components";
 
+import { colors } from "../../utils";
+
+const { light_gray } = colors;
+
 const MarketDetailsContainer = styled.div`
   display: flex;
-  margin: 15px 0;
+  padding: 15px 40px;
   align-items: center;
+  margin: 0 -40px;
+
+  &:hover {
+    background-color: ${light_gray};
+  }
 `;
 
 const CurrencyDetailsContainer = styled.div`
@@ -11,14 +20,17 @@ const CurrencyDetailsContainer = styled.div`
   flex-direction: column;
   text-align: left;
   font-size: 14px;
+  cursor: default;
 `;
 
 const CurrencyIconContainer = styled.div`
   margin-right: 10px;
+  cursor: default;
 `;
 
 const CurrencyName = styled.div`
   margin-bottom: 3px;
+  cursor: default;
 `;
 
 export {

@@ -16,7 +16,7 @@ const {
   Tron
 } = currencies;
 
-const currenciesIndexation = {
+const currenciesIconsIndexation = {
   BTC: <Bitcoin />,
   BCH: <BitcoinCash />,
   CHA: <Chaucha />,
@@ -30,10 +30,27 @@ const currenciesIndexation = {
   TRX: <Tron />
 };
 
-const getCurrencyIcon = code => {
+const currenciesNamesIndexation = {
+  BTC: "Bitcoin",
+  BCH: "Bitcoin Cash",
+  CHA: "Chaucha",
+  DAI: "Dai",
+  DASH: "Dash",
+  ETH: "Ether",
+  LTC: "Litecoin",
+  LUK: "Luka",
+  XRP: "Ripple",
+  XLM: "Stellar",
+  TRX: "Tron"
+};
+
+const getCurrencyNameAndIcon = code => {
   const currencyCode = code.toString();
 
-  return currenciesIndexation[currencyCode];
+  return {
+    name: currenciesNamesIndexation[currencyCode],
+    icon: currenciesIconsIndexation[currencyCode]
+  };
 };
 
 const filterMarketsByPrimaryCur = (primaryCurFilter, markets) =>
@@ -43,7 +60,11 @@ const filterMarketsByPrimaryCur = (primaryCurFilter, markets) =>
     return marketPrimaryCur === primaryCurFilter;
   });
 
+const formatAmount = amount =>
+  amount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+
 export default {
   filterMarketsByPrimaryCur,
-  getCurrencyIcon
+  formatAmount,
+  getCurrencyNameAndIcon
 };
