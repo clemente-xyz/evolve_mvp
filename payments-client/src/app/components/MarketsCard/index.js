@@ -4,6 +4,12 @@ import { Query } from "react-apollo";
 import { QUERIES } from "../../apollo";
 import Card from "../Card";
 import { helpers } from "../../utils";
+import {
+  CurrencyDetailsContainer,
+  CurrencyName,
+  CurrencyIconContainer,
+  MarketDetailsContainer
+} from "./styles";
 
 const { GET_MARKETS } = QUERIES;
 
@@ -23,10 +29,16 @@ const MarketsCard = ({ markets }) => {
             const currencyIcon = getCurrencyIcon(primaryCurName);
 
             return (
-              <p key={_id}>
-                {currencyIcon}
-                {primaryCurName} at {primaryCurBuyPrice} {secondaryCurName}
-              </p>
+              <MarketDetailsContainer key={_id}>
+                <CurrencyIconContainer>{currencyIcon}</CurrencyIconContainer>
+
+                <CurrencyDetailsContainer>
+                  <CurrencyName>{primaryCurName}</CurrencyName>
+                  <div>
+                    {primaryCurBuyPrice} {secondaryCurName}
+                  </div>
+                </CurrencyDetailsContainer>
+              </MarketDetailsContainer>
             );
           })}
         </>
