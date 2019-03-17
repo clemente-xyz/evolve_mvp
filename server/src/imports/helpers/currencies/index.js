@@ -2,10 +2,8 @@ import { cryptoxchangeService } from "../../services";
 
 const { getMarkets, getMarket } = cryptoxchangeService;
 
-const populateMarkets = async MarketCollection => {
-  const markets = await getMarkets();
-
-  const newMarkets = await Promise.all(
+const reduceMarkets = markets =>
+  Promise.all(
     markets.map(async ({ code, name, mainCurrency, secondaryCurrency }) => {
       try {
         const marketDetails = await getMarket(code);
@@ -33,6 +31,11 @@ const populateMarkets = async MarketCollection => {
     })
   );
 
+const populateMarkets = async MarketCollection => {
+  const markets = await getMarkets();
+
+  const newMarkets = await reduceMarkets(markets);
+
   const populatedMarkets = await Promise.all(
     newMarkets.map(async newMarket => {
       try {
@@ -58,4 +61,37 @@ const updateMarkets = async MarketCollection => {
   }
 };
 
-export default { populateMarkets, updateMarkets };
+const getCurrencyEquivalence = async (primaryCurrency, secondaryCurrency) => {
+  try {
+    const markets = await getMarkets();
+
+    const reducedMarkets = await reduceMarkets(markets);
+
+    const matchedMarket = reducedMarkets.filter(reducedMarket => {
+      const {
+        primaryCurrency: reducedPrimaryCur,
+        secondaryCurrency: reducedSecondaryCur,
+        primaryCurBuyPrice: reducedPrimaryCurBuyPrice,
+        primaryCurSellPrice: reducedPrimaryCurSellPrice
+      } = reducedMarket;
+
+      if (
+        reducedPrimaryCur === primaryCurrency &&
+        reducedSecondaryCur === secondaryCurrency
+      ) {
+        return reducedMarket;
+      }
+    });
+
+    return matchedMarket[0].primaryCurSellPrice;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export default {
+  getCurrencyEquivalence,
+  populateMarkets,
+  updateMarkets,
+  reduceMarkets
+};

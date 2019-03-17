@@ -1,4 +1,4 @@
 import auth from "./auth";
-import crypto from "./crypto";
+import currencies from "./currencies";
 
-export default { ...auth, ...crypto };
+export default { ...auth, ...currencies };
