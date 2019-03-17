@@ -6,13 +6,15 @@ import helpers from "../../../../imports/helpers";
 const { populateMarkets, updateMarkets } = helpers;
 
 export default async () => {
-	const currentMarkets = await Market.find({});
+  const currentMarkets = await Market.find({});
 
-	if (!currentMarkets || currentMarkets.length === 0) {
-		populateMarkets(Market);
-	} else {
-		updateMarkets(Market);
-	}
+  if (!currentMarkets || currentMarkets.length === 0) {
+    populateMarkets(Market);
+  }
+
+  // else {
+  // 	updateMarkets(Market);
+  // }
 };
 
 //Important: add method refreshData that will be called every time client calls GET_MARKETS query

@@ -1,11 +1,11 @@
 import { gql } from "apollo-server";
 
 export default gql`
-  type Wallet {
+  type Fund {
     _id: ID!
-    owner: Company!
-    balance: Float!
-    funds: [Fund]
+    wallet: Wallet!
+    currency: String!
+    amount: Float!
     createdAt: Date!
     updatedAt: Date!
   }
