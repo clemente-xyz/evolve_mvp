@@ -28,16 +28,6 @@ const getBalance = async (funds, secondaryCurrency = "CLP") => {
     0
   );
 };
-// Promise.all(
-//   funds.reduce(async (acc, { currency: primaryCurrency, amount }) => {
-//     const currencyEquivalence = await getCurrencyEquivalence(
-//       primaryCurrency,
-//       secondaryCurrency
-//     );
-
-//     return acc + amount * currencyEquivalence;
-//   }, 0)
-// );
 
 export default async ({ _id }) => {
   try {
