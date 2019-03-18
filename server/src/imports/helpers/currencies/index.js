@@ -70,9 +70,7 @@ const getCurrencyEquivalence = async (primaryCurrency, secondaryCurrency) => {
     const matchedMarket = reducedMarkets.filter(reducedMarket => {
       const {
         primaryCurrency: reducedPrimaryCur,
-        secondaryCurrency: reducedSecondaryCur,
-        primaryCurBuyPrice: reducedPrimaryCurBuyPrice,
-        primaryCurSellPrice: reducedPrimaryCurSellPrice
+        secondaryCurrency: reducedSecondaryCur
       } = reducedMarket;
 
       if (
@@ -88,6 +86,8 @@ const getCurrencyEquivalence = async (primaryCurrency, secondaryCurrency) => {
     throw error;
   }
 };
+
+getCurrencyEquivalence("BTC", "CLP");
 
 export default {
   getCurrencyEquivalence,
