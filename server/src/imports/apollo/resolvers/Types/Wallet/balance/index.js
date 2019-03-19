@@ -22,7 +22,7 @@ const getBalance = async (funds, secondaryCurrency = "CLP") => {
   );
 
   return _currenciesEquivalences.reduce(
-    async (acc, { currenciesEquivalence, amount }) => {
+    (acc, { currenciesEquivalence, amount }) => {
       return acc + amount * currenciesEquivalence;
     },
     0
