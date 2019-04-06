@@ -1,8 +1,20 @@
 import Orionx from "orionx-sdk";
 
-const getMarkets = () => {
+const getMarkets = async () => {
   try {
-    return Orionx.markets();
+    const receivedMarkets = await Orionx.markets();
+
+    const markets = await Promise.all(
+      receivedMarkets.map(async ({ code }) => {
+        try {
+          return await getMarket(code);
+        } catch (error) {
+          throw error;
+        }
+      })
+    );
+
+    return markets;
   } catch (error) {
     throw error;
   }
@@ -30,9 +42,18 @@ const getMarket = async (code, market_order_limit = 1) => {
       marketBuyPrice =
         receivedMarketBuyPrice * Math.pow(10, -1 * conversionFactor);
 
-    return {
-      name: receivedMarket.name,
+    console.log({
       code: receivedMarket.code,
+      name: receivedMarket.name,
+      marketSellPrice,
+      marketBuyPrice,
+      primaryCurrency: receivedMarket.mainCurrency,
+      secondaryCurrency: receivedMarket.secondaryCurrency
+    });
+
+    return {
+      code: receivedMarket.code,
+      name: receivedMarket.name,
       marketSellPrice,
       marketBuyPrice,
       primaryCurrency: receivedMarket.mainCurrency,
