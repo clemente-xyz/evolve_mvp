@@ -7,9 +7,11 @@ export default gql`
     email: String!
     orgName: String
     avatar: String
+    wallet: Wallet!
     createdAt: Date!
     updatedAt: Date!
   }
+
   type MeAsCompany {
     _id: ID!
     username: String!

@@ -18,9 +18,13 @@ const CompanySchema = new Schema(
       required: true,
       unique: true
     },
-
     orgName: String,
-    avatar: String
+    avatar: String,
+    wallet: {
+      type: Schema.Types.ObjectId,
+      ref: "Wallet",
+      unique: true
+    }
   },
   { timestamps: true }
 );
