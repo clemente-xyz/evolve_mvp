@@ -7,7 +7,10 @@ export default async (_, args, { user }) => {
   try {
     await requestAuth(user);
 
-    await Wallet.updateOne({ owner: user._id }, { balance: 45 });
+    await Wallet.updateOne(
+      { owner: args.receiverUser },
+      { balance: args.amountInUsd }
+    );
 
     return PaymentTx.create({ ...args, senderUser: user._id });
   } catch (error) {
