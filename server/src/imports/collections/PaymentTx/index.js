@@ -2,15 +2,15 @@ import mongoose, { Schema } from "mongoose";
 
 const PaymentTxSchema = new Schema(
   {
-    sendingCripto: {
+    sendingCrypto: {
       type: String,
       required: true
     },
-    receivingCripto: {
+    receivingCrypto: {
       type: String,
       required: true
     },
-    amountInUsd: {
+    amount: {
       type: Number,
       required: true
     },

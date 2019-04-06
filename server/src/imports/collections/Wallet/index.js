@@ -2,7 +2,7 @@ import { model, Schema } from "mongoose";
 
 const WalletSchema = new Schema(
   {
-    balance: {
+    balanceInClp: {
       type: String,
       required: true
     },
@@ -26,7 +26,7 @@ const WalletSchema = new Schema(
 
 WalletSchema.pre("save", function(next) {
   if (this.isNew) {
-    this.balance = 0;
+    this.balanceInClp = 0;
 
     return next();
   }

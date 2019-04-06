@@ -4,7 +4,7 @@ export default gql`
   type Wallet {
     _id: ID!
     owner: Company!
-    balance: Float!
+    balanceInClp: Float!
     funds: [Fund]
     createdAt: Date!
     updatedAt: Date!
