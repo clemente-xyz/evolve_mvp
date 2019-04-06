@@ -21,16 +21,16 @@ const getMarket = async (code, market_order_limit = 1) => {
     const receivedMarketSellPrice = receivedMarketOrderBook.buy[0].limitPrice,
       receivedMarketBuyPrice = receivedMarketOrderBook.sell[0].limitPrice;
 
-    const converterFactor = receivedMarket.secondaryCurrency.format
+    const conversionFactor = receivedMarket.secondaryCurrency.format
       .split(".")[1]
-      .match(/0/gi).length;
+      .match(/0/g).length;
 
     const marketSellPrice =
-        receivedMarketSellPrice * Math.pow(10, -1 * converterFactor),
+        receivedMarketSellPrice * Math.pow(10, -1 * conversionFactor),
       marketBuyPrice =
-        receivedMarketBuyPrice * Math.pow(10, -1 * converterFactor);
+        receivedMarketBuyPrice * Math.pow(10, -1 * conversionFactor);
 
-    const market = {
+    return {
       name: receivedMarket.name,
       code: receivedMarket.code,
       marketSellPrice,
@@ -38,15 +38,9 @@ const getMarket = async (code, market_order_limit = 1) => {
       primaryCurrency: receivedMarket.mainCurrency,
       secondaryCurrency: receivedMarket.secondaryCurrency
     };
-
-    console.log({
-      market
-    });
   } catch (error) {
     throw error;
   }
 };
-
-getMarket("ETHBTC");
 
 export default { getMarkets, getMarket };
