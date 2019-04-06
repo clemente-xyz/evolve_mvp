@@ -87,8 +87,6 @@ const getCurrencyEquivalence = async (primaryCurrency, secondaryCurrency) => {
   }
 };
 
-getCurrencyEquivalence("BTC", "CLP");
-
 export default {
   getCurrencyEquivalence,
   populateMarkets,
