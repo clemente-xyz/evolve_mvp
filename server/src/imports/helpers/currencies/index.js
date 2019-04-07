@@ -8,7 +8,12 @@ const populateMarkets = async MarketCollection => {
   const populatedMarkets = await Promise.all(
     markets.map(async newMarket => {
       try {
-        return await MarketCollection.create(newMarket);
+        const { primaryCurrency, secondaryCurrency } = newMarket;
+        return await MarketCollection.create({
+          ...newMarket,
+          primaryCurrency: primaryCurrency.code,
+          secondaryCurrency: secondaryCurrency.code
+        });
       } catch (error) {
         throw error;
       }
