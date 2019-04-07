@@ -17,8 +17,14 @@ export default gql`
       sendingCrypto
       receivingCrypto
       amount
-      senderUser
-      receiverUser
+      senderUser {
+        _id
+        username
+      }
+      receiverUser {
+        _id
+        username
+      }
     }
   }
 `;

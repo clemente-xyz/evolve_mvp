@@ -27,6 +27,7 @@
     "no-unused-vars": "off",
     "arrow-parens": "off",
     "react/jsx-filename-extension": "off",
-    "react/forbid-prop-types": "off"
+    "react/forbid-prop-types": "off",
+    "radix": "off"
   }
 }

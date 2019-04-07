@@ -1,17 +1,21 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Mutation } from "react-apollo";
 
+import { MUTATIONS } from "../../../apollo";
 import { Button, Card, TextInput } from "../../../components";
 import { colors } from "../../../utils";
 import { MainContainer, TextInputContainer } from "./styles";
 
+const { CREATE_PAYMENT } = MUTATIONS;
 const {
  DARK_GREEN, DARK_RED, GREEN, RED, WHITE,
 } = colors;
 
-export default () => {
+const Payment = ({ createPaymentMutation }) => {
   const [sendingCrypto, setSendingCrypto] = useState("");
   const [receivingCrypto, setReceivingCrypto] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   const [receiverUser, setReceiverUser] = useState("");
 
   const handleInputChange = ({ target: { name: inputName, value: inputValue } }) => {
@@ -20,14 +24,29 @@ export default () => {
     } else if (inputName === "receivingCrypto") {
       setReceivingCrypto(inputValue);
     } else if (inputName === "amount") {
-      setAmount(inputValue);
+      setAmount(parseInt(inputValue));
     } else if (inputName === "receiverUser") {
       setReceiverUser(inputValue);
     }
   };
 
-  const handleCreatePaymentTxClick = () => {
-    alert("Create payment!");
+  const handleCreatePaymentTxClick = async () => {
+    try {
+      const {
+        data: { createPayment },
+      } = await createPaymentMutation({
+        variables: {
+          sendingCrypto,
+          receivingCrypto,
+          amount,
+          receiverUser,
+        },
+      });
+
+      console.log(createPayment);
+    } catch (error) {
+      console.log({ error });
+    }
   };
 
   return (
@@ -100,3 +119,21 @@ export default () => {
     </MainContainer>
   );
 };
+
+Payment.propTypes = {
+  createPaymentMutation: PropTypes.func.isRequired,
+};
+
+const PaymentWithApollo = () => (
+  <Mutation mutation={CREATE_PAYMENT}>
+    {(createPayment, { loading, error }) => {
+      if (loading) return <p>Loading...</p>;
+
+      if (error) return <p>Error</p>;
+
+      return <Payment createPaymentMutation={createPayment} />;
+    }}
+  </Mutation>
+);
+
+export default PaymentWithApollo;
