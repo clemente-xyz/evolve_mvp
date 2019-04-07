@@ -1,29 +1,26 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
 import { withRouter } from "react-router-dom";
 
 import { MUTATIONS } from "../../../apollo";
-import { Card, Button, Loading, TextInput } from "../../../components";
+import {
+ Card, Button, Loading, TextInput,
+} from "../../../components";
 import { colors } from "../../../utils";
 import { ErrorText, MainContainer, TextInputContainer } from "./styles";
 
 const { SIGNIN_COMPANY } = MUTATIONS;
-const { white, blue, dark_blue } = colors;
+const { WHITE, BLUE, DARK_BLUE } = colors;
 
 const Signin = ({
-  signinCompanyMutation,
-  loadingState,
-  errorState,
-  history,
-  refetch
+ signinCompanyMutation, loadingState, errorState, history, refetch,
 }) => {
-  const [username, setUsername] = useState(""),
-    [password, setPassword] = useState(""),
-    [errorMessage, setErrorMessage] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = ({
-    target: { name: inputName, value: inputValue }
-  }) => {
+  const handleInputChange = ({ target: { name: inputName, value: inputValue } }) => {
     if (inputName === "username") {
       setUsername(inputValue);
     } else if (inputName === "password") {
@@ -34,12 +31,12 @@ const Signin = ({
   const handleLoginClick = async () => {
     try {
       const {
-        data: { signinCompany }
+        data: { signinCompany },
       } = await signinCompanyMutation({
-        variables: { username, password }
+        variables: { username, password },
       });
 
-      const token = signinCompany.token;
+      const { token } = signinCompany;
 
       localStorage.setItem("token", token);
 
@@ -61,9 +58,9 @@ const Signin = ({
       <Card
         title={{
           text: "Sign in",
-          alignment: "center"
+          alignment: "center",
         }}
-        content={
+        content={(
           <>
             <TextInputContainer>
               <TextInput
@@ -85,22 +82,34 @@ const Signin = ({
             </TextInputContainer>
             {errorState && <ErrorText>{errorMessage}</ErrorText>}
           </>
-        }
-        buttons={
+)}
+        buttons={(
           <Button
             onClick={handleLoginClick}
-            text={loadingState ? <Loading color={white} /> : "Log in"}
-            backgroundColor={blue}
-            hoverColor={dark_blue}
-            textColor={white}
+            text={loadingState ? <Loading color={WHITE} /> : "Log in"}
+            backgroundColor={BLUE}
+            hoverColor={DARK_BLUE}
+            textColor={WHITE}
           />
-        }
+)}
       />
     </MainContainer>
   );
 };
 
-const SigninWithMutation = props => (
+Signin.defaultProps = {
+  errorState: null,
+};
+
+Signin.propTypes = {
+  signinCompanyMutation: PropTypes.func.isRequired,
+  loadingState: PropTypes.any.isRequired,
+  errorState: PropTypes.any,
+  history: PropTypes.object.isRequired,
+  refetch: PropTypes.func.isRequired,
+};
+
+const SigninWithApollo = props => (
   <Mutation mutation={SIGNIN_COMPANY}>
     {(signinCompany, { loading, error }) => (
       <Signin
@@ -113,4 +122,4 @@ const SigninWithMutation = props => (
   </Mutation>
 );
 
-export default withRouter(SigninWithMutation);
+export default withRouter(SigninWithApollo);
