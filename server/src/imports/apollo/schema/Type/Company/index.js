@@ -18,6 +18,7 @@ export default gql`
     email: String!
     orgName: String
     avatar: String
+    wallet: Wallet!
     createdAt: Date!
     updatedAt: Date!
   }
