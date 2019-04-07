@@ -17,17 +17,11 @@ export default () => {
   }) => {
     if (inputName === "sendingCrypto") {
       setSendingCrypto(inputValue);
-    }
-
-    if (inputName === "receivingCrypto") {
+    } else if (inputName === "receivingCrypto") {
       setReceivingCrypto(inputValue);
-    }
-
-    if (inputName === "amount") {
+    } else if (inputName === "amount") {
       setAmount(inputValue);
-    }
-
-    if (inputName === "receiverUser") {
+    } else if (inputName === "receiverUser") {
       setReceiverUser(inputValue);
     }
   };

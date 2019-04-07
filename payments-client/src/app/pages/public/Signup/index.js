@@ -23,10 +23,9 @@ const SignUp = ({
     [email, setEmail] = useState(""),
     [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = ({ target }) => {
-    const inputName = target.name,
-      inputValue = target.value;
-
+  const handleInputChange = ({
+    target: { name: inputName, value: inputValue }
+  }) => {
     if (inputName === "username") {
       setUsername(inputValue);
     } else if (inputName === "password") {
