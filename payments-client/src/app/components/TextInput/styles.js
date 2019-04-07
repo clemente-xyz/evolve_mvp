@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../utils";
 
-const { light_gray, blue, white } = colors;
+const { LIGHT_GRAY, BLUE, WHITE } = colors;
 
 const Container = styled.input`
   padding: 10px;
@@ -9,15 +9,16 @@ const Container = styled.input`
   outline: none;
   box-sizing: border-box;
   font-size: 15px;
-  border: 1px solid ${light_gray};
-  background-color: ${light_gray};
+  border: 1px solid ${LIGHT_GRAY};
+  background-color: ${LIGHT_GRAY};
   border-radius: 5px;
   transition: 0.5s all;
 
   &:focus {
-    border: 1px solid ${blue};
-    background-color: ${white};
+    border: 1px solid ${BLUE};
+    background-color: ${WHITE};
   }
 `;
 
+// eslint-disable-next-line import/prefer-default-export
 export { Container };

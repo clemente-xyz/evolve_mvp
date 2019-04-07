@@ -21,4 +21,6 @@ const BalanceAmount = styled.span`
   margin-right: 10px;
 `;
 
-export { AmountContainer, BalanceAmount, ButtonsContainer, ContentContainer };
+export {
+ AmountContainer, BalanceAmount, ButtonsContainer, ContentContainer,
+};

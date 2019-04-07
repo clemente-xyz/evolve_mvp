@@ -1,20 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-import {
-  FundsCard as Funds,
-  MarketsCard as Markets
-} from "../../../components";
+import { FundsCard as Funds, MarketsCard as Markets } from "../../../components";
 import Balance from "./Balance";
 import {
-  CryptoFundsContainer,
-  BalanceContainer,
-  MainContainer,
-  MarketContainer
+ CryptoFundsContainer, BalanceContainer, MainContainer, MarketContainer,
 } from "./styles";
 
-export default ({ myData }) => {
+const Wallet = ({ myData }) => {
   const {
-    wallet: { balanceInClp: myBalance, funds: myFunds }
+    wallet: { balanceInClp: myBalance, funds: myFunds },
   } = myData;
 
   return (
@@ -31,3 +26,14 @@ export default ({ myData }) => {
     </MainContainer>
   );
 };
+
+Wallet.propTypes = {
+  myData: PropTypes.shape({
+    wallet: PropTypes.shape({
+      balanceInClp: PropTypes.number.isRequired,
+      funds: PropTypes.array.isRequired,
+    }),
+  }).isRequired,
+};
+
+export default Wallet;

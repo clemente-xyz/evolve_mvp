@@ -1,27 +1,27 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { Button, Card } from "../../../../components";
 import { colors, helpers } from "../../../../utils";
 import {
-  AmountContainer,
-  BalanceAmount,
-  ButtonsContainer,
-  ContentContainer
+ AmountContainer, BalanceAmount, ButtonsContainer, ContentContainer,
 } from "./styles";
 
 const { formatAmount } = helpers;
-const { white, green, dark_green, blue, dark_blue } = colors;
+const {
+ WHITE, GREEN, DARK_GREEN, BLUE, DARK_BLUE,
+} = colors;
 
-export default ({ balanceAmount }) => {
+const Balance = ({ balanceAmount }) => {
   const formatedBalanceAmount = formatAmount(balanceAmount);
 
   return (
     <Card
       title={{
         text: "Balance",
-        alignment: "left"
+        alignment: "left",
       }}
-      content={
+      content={(
         <ContentContainer>
           <AmountContainer>
             <BalanceAmount>{formatedBalanceAmount}</BalanceAmount>
@@ -34,23 +34,29 @@ export default ({ balanceAmount }) => {
               onClick={() => {
                 alert("Deposit");
               }}
-              textColor={white}
-              backgroundColor={blue}
-              hoverColor={dark_blue}
+              textColor={WHITE}
+              backgroundColor={BLUE}
+              hoverColor={DARK_BLUE}
             />
             <Button
               text="Withdraw"
               onClick={() => {
                 alert("Withdraw");
               }}
-              textColor={white}
-              backgroundColor={green}
-              hoverColor={dark_green}
+              textColor={WHITE}
+              backgroundColor={GREEN}
+              hoverColor={DARK_GREEN}
             />
           </ButtonsContainer>
         </ContentContainer>
-      }
+)}
       buttons={null}
     />
   );
 };
+
+Balance.propTypes = {
+  balanceAmount: PropTypes.number.isRequired,
+};
+
+export default Balance;

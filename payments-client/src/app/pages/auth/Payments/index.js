@@ -4,17 +4,17 @@ import { Button, Card, TextInput } from "../../../components";
 import { colors } from "../../../utils";
 import { MainContainer, TextInputContainer } from "./styles";
 
-const { dark_green, dark_red, green, red, white } = colors;
+const {
+ DARK_GREEN, DARK_RED, GREEN, RED, WHITE,
+} = colors;
 
 export default () => {
-  const [sendingCrypto, setSendingCrypto] = useState(""),
-    [receivingCrypto, setReceivingCrypto] = useState(""),
-    [amount, setAmount] = useState(0),
-    [receiverUser, setReceiverUser] = useState("");
+  const [sendingCrypto, setSendingCrypto] = useState("");
+  const [receivingCrypto, setReceivingCrypto] = useState("");
+  const [amount, setAmount] = useState(0);
+  const [receiverUser, setReceiverUser] = useState("");
 
-  const handleInputChange = ({
-    target: { name: inputName, value: inputValue }
-  }) => {
+  const handleInputChange = ({ target: { name: inputName, value: inputValue } }) => {
     if (inputName === "sendingCrypto") {
       setSendingCrypto(inputValue);
     } else if (inputName === "receivingCrypto") {
@@ -34,7 +34,7 @@ export default () => {
     <MainContainer>
       <Card
         title={{ text: "New Payment", alignment: "center" }}
-        content={
+        content={(
           <>
             <TextInputContainer>
               <TextInput
@@ -76,26 +76,26 @@ export default () => {
               />
             </TextInputContainer>
           </>
-        }
-        buttons={
+)}
+        buttons={(
           <>
             <Button
               onClick={handleCreatePaymentTxClick}
               text="Confirm transaction"
-              backgroundColor={green}
-              hoverColor={dark_green}
-              textColor={white}
+              backgroundColor={GREEN}
+              hoverColor={DARK_GREEN}
+              textColor={WHITE}
             />
 
             <Button
               onClick={handleCreatePaymentTxClick}
               text="Cancel transaction"
-              backgroundColor={red}
-              hoverColor={dark_red}
-              textColor={white}
+              backgroundColor={RED}
+              hoverColor={DARK_RED}
+              textColor={WHITE}
             />
           </>
-        }
+)}
       />
     </MainContainer>
   );

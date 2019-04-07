@@ -3,11 +3,13 @@ import { NavLink } from "react-router-dom";
 
 import { colors } from "../../utils";
 
-const { black, white, dark_gray, light_gray, blue } = colors;
+const {
+ BLACK, WHITE, DARK_GRAY, LIGHT_GRAY, BLUE,
+} = colors;
 
 const MainContainer = styled.header`
   display: flex;
-  background-color: ${white};
+  background-color: ${WHITE};
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   padding: 0px 40px;
 `;
@@ -37,31 +39,26 @@ const LogoContainer = styled.div`
 
 const LinkContainer = styled(NavLink)`
   text-decoration: none;
-  color: ${black};
+  color: ${BLACK};
   height: 100%;
   line-height: 3;
 
   &:hover {
-    color: ${dark_gray};
+    color: ${DARK_GRAY};
   }
   &:active {
-    color: ${light_gray};
+    color: ${LIGHT_GRAY};
   }
   &.${props => props.activeClassName} {
-    border-bottom: 2px solid ${blue};
+    border-bottom: 2px solid ${BLUE};
     transition: border 0.2s;
   }
 `;
 
 LinkContainer.defaultProps = {
-  activeClassName: "active"
+  activeClassName: "active",
 };
 
 export {
-  MainContainer,
-  BrandContainer,
-  BrandText,
-  LinkContainer,
-  PagesContainer,
-  LogoContainer
+ MainContainer, BrandContainer, BrandText, LinkContainer, PagesContainer, LogoContainer,
 };

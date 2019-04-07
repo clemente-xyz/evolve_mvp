@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { colors } from "../../utils";
 
-const { light_gray } = colors;
+const { LIGHT_GRAY } = colors;
 
 const MarketDetailsContainer = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const MarketDetailsContainer = styled.div`
   margin: 0 -40px;
 
   &:hover {
-    background-color: ${light_gray};
+    background-color: ${LIGHT_GRAY};
   }
 `;
 
@@ -32,8 +32,5 @@ const CurrencyName = styled.div`
 `;
 
 export {
-  CurrencyDetailsContainer,
-  CurrencyName,
-  CurrencyIconContainer,
-  MarketDetailsContainer
+ CurrencyDetailsContainer, CurrencyName, CurrencyIconContainer, MarketDetailsContainer,
 };
