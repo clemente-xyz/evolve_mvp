@@ -6,24 +6,25 @@ import { withSession } from "../components";
 
 export default app => {
   const client = new ApolloClient({
+    // eslint-disable-next-line no-undef
     uri: process.env.REACT_APP_API_ENDPOINT,
     fetchOptions: {
-      credentials: "include"
+      credentials: "include",
     },
     request: operation => {
       const token = localStorage.getItem("token");
 
       operation.setContext({
         headers: {
-          authorization: token ? `Bearer ${token}` : ""
-        }
+          authorization: token ? `Bearer ${token}` : "",
+        },
       });
     },
     onError: ({ networkError }) => {
       if (networkError) {
         console.log("networkError : ", networkError);
       }
-    }
+    },
   });
 
   const AppWithSession = withSession(app);
