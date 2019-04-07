@@ -7,6 +7,14 @@ export default gql`
       username
       email
       orgName
+      wallet {
+        balanceInClp
+        funds {
+          _id
+          amount
+          currency
+        }
+      }
     }
   }
 `;

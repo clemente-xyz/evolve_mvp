@@ -4,7 +4,7 @@ export default gql`
   query GetWallet($ownerId: ID!) {
     getWallet(ownerId: $ownerId) {
       _id
-      balance
+      balanceInClp
       owner {
         _id
         username

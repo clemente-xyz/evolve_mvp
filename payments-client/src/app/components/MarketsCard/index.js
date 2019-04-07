@@ -32,13 +32,13 @@ const MarketsCard = ({ markets }) => {
       content={
         <>
           <p>Chilean market (CLP)</p>
-          {filteredMarkets.map(({ _id, name, primaryCurBuyPrice }) => {
+          {filteredMarkets.map(({ _id, name, marketBuyPrice }) => {
             const [primaryCurName, secondaryCurName] = name.split("/");
             const {
               name: currencyName,
               icon: currencyIcon
             } = getCurrencyNameAndIcon(primaryCurName);
-            const primaryCurrencyPrice = formatAmount(primaryCurBuyPrice);
+            const primaryCurrencyPrice = formatAmount(marketBuyPrice);
 
             return (
               <MarketDetailsContainer key={_id}>

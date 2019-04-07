@@ -6,8 +6,8 @@ export default gql`
       _id
       code
       name
-      primaryCurBuyPrice
-      primaryCurSellPrice
+      marketBuyPrice
+      marketSellPrice
     }
   }
 `;

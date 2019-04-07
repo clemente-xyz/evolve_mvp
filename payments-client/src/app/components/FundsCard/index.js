@@ -1,12 +1,8 @@
 import React from "react";
-import { Query } from "react-apollo";
 
-import { QUERIES } from "../../apollo";
 import Card from "../Card";
 
-const { GET_FUNDS } = QUERIES;
-
-const FundsCard = ({ funds }) => (
+export default ({ funds }) => (
   <Card
     title={{
       text: "Funds",
@@ -18,16 +14,4 @@ const FundsCard = ({ funds }) => (
       </p>
     ))}
   />
-);
-
-export default ({ wallet }) => (
-  <Query query={GET_FUNDS} variables={{ wallet }}>
-    {({ data: { getFunds: funds }, loading, error }) => {
-      if (loading) return <p>Loading...</p>;
-
-      if (error) return <p>Error!</p>;
-
-      return <FundsCard funds={funds} />;
-    }}
-  </Query>
 );

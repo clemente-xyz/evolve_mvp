@@ -1,7 +1,5 @@
 import React from "react";
-import { Query } from "react-apollo";
 
-import { QUERIES } from "../../../apollo";
 import {
   FundsCard as Funds,
   MarketsCard as Markets
@@ -14,15 +12,15 @@ import {
   MarketContainer
 } from "./styles";
 
-const { GET_WALLET } = QUERIES;
-
-const Wallet = ({ myData, myWallet }) => {
-  const { balance: myBalance, _id: walletId } = myWallet;
+export default ({ myData }) => {
+  const {
+    wallet: { balanceInClp: myBalance, funds: myFunds }
+  } = myData;
 
   return (
     <MainContainer>
       <CryptoFundsContainer>
-        <Funds wallet={walletId} />
+        <Funds funds={myFunds} />
       </CryptoFundsContainer>
       <BalanceContainer>
         <Balance balanceAmount={myBalance} />
@@ -33,15 +31,3 @@ const Wallet = ({ myData, myWallet }) => {
     </MainContainer>
   );
 };
-
-export default ({ myData }) => (
-  <Query query={GET_WALLET} variables={{ ownerId: myData._id }}>
-    {({ data: { getWallet: myWallet }, loading, error }) => {
-      if (loading) return <p>Loading...</p>;
-
-      if (error) return <p>Error!</p>;
-
-      return <Wallet myData={myData} myWallet={myWallet} />;
-    }}
-  </Query>
-);
