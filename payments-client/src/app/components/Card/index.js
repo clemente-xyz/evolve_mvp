@@ -1,7 +1,9 @@
 import React from "react";
-import { MainContainer, ButtonsContainer } from "./styles";
+import PropTypes from "prop-types";
 
-export default ({ title, content, buttons }) => {
+import { ButtonsContainer, MainContainer } from "./styles";
+
+const Card = ({ title, content, buttons }) => {
   const { text: titleText, alignment: titleAlignment } = title;
 
   return (
@@ -12,3 +14,19 @@ export default ({ title, content, buttons }) => {
     </MainContainer>
   );
 };
+
+Card.defaultProps = {
+  title: null,
+  buttons: null,
+};
+
+Card.propTypes = {
+  title: PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    alignment: PropTypes.string.isRequired,
+  }),
+  content: PropTypes.node.isRequired,
+  buttons: PropTypes.node,
+};
+
+export default Card;

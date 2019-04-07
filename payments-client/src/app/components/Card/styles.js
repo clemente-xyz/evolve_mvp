@@ -34,4 +34,4 @@ const ButtonsContainer = styled.div`
   )}
 `;
 
-export { MainContainer, ButtonsContainer };
+export { ButtonsContainer, MainContainer };
