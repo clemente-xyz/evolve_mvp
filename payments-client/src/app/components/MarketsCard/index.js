@@ -20,7 +20,7 @@ const {
 } = helpers;
 
 const MarketsCard = ({ markets }) => {
-  const [activeMarket, setActiveMarket] = useState("CLP");
+  const [activeMarket] = useState("CLP");
   const filteredMarkets = filterMarketsByPrimaryCur(activeMarket, markets);
 
   return (
@@ -33,6 +33,8 @@ const MarketsCard = ({ markets }) => {
         <>
           <p>Chilean market (CLP)</p>
           {filteredMarkets.map(({ _id, name, marketBuyPrice }) => {
+            if (marketBuyPrice === 0) return;
+
             const [primaryCurName, secondaryCurName] = name.split("/");
             const {
               name: currencyName,
