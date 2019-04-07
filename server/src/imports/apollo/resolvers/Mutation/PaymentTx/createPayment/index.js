@@ -9,8 +9,6 @@ const getFundAmount = async (sendingCrypto, receivingCrypto, amount) => {
     receivingCrypto
   );
 
-  // console.log({ currenciesEquivalence });
-
   return amount * currenciesEquivalence;
 };
 

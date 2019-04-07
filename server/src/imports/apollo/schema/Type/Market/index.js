@@ -7,7 +7,7 @@ export default gql`
     name: String!
     primaryCurrency: String!
     secondaryCurrency: String!
-    primaryCurBuyPrice: Float
-    primaryCurSellPrice: Float
+    marketBuyPrice: Float
+    marketSellPrice: Float
   }
 `;
