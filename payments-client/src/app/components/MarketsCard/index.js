@@ -33,7 +33,7 @@ const MarketsCard = ({ markets }) => {
         <>
           <p>Chilean market (CLP)</p>
           {filteredMarkets.map(({ _id, name, marketBuyPrice }) => {
-            if (marketBuyPrice === 0) return;
+            if (marketBuyPrice === 0) return null;
 
             const [primaryCurName, secondaryCurName] = name.split("/");
             const {
