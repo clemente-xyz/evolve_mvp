@@ -13,7 +13,7 @@ const {
   Luka,
   Ripple,
   Stellar,
-  Tron
+  Tron,
 } = currencies;
 
 const currenciesIconsIndexation = {
@@ -27,7 +27,7 @@ const currenciesIconsIndexation = {
   LUK: <Luka />,
   XRP: <Ripple />,
   XLM: <Stellar />,
-  TRX: <Tron />
+  TRX: <Tron />,
 };
 
 const currenciesNamesIndexation = {
@@ -41,7 +41,7 @@ const currenciesNamesIndexation = {
   LUK: "Luka",
   XRP: "Ripple",
   XLM: "Stellar",
-  TRX: "Tron"
+  TRX: "Tron",
 };
 
 const getCurrencyNameAndIcon = code => {
@@ -49,22 +49,20 @@ const getCurrencyNameAndIcon = code => {
 
   return {
     name: currenciesNamesIndexation[currencyCode],
-    icon: currenciesIconsIndexation[currencyCode]
+    icon: currenciesIconsIndexation[currencyCode],
   };
 };
 
-const filterMarketsByPrimaryCur = (primaryCurFilter, markets) =>
-  markets.filter(({ name }) => {
+const filterMarketsByPrimaryCur = (primaryCurFilter, markets) => markets.filter(({ name }) => {
     const marketPrimaryCur = name.split("/")[1];
 
     return marketPrimaryCur === primaryCurFilter;
   });
 
-const formatAmount = amount =>
-  amount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+const formatAmount = amount => amount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 
 export default {
   filterMarketsByPrimaryCur,
   formatAmount,
-  getCurrencyNameAndIcon
+  getCurrencyNameAndIcon,
 };

@@ -81,7 +81,7 @@ export default () => {
           <>
             <Button
               onClick={handleCreatePaymentTxClick}
-              text="Confirm transaction"
+              text="Confirm"
               backgroundColor={GREEN}
               hoverColor={DARK_GREEN}
               textColor={WHITE}
@@ -89,7 +89,7 @@ export default () => {
 
             <Button
               onClick={handleCreatePaymentTxClick}
-              text="Cancel transaction"
+              text="Cancel"
               backgroundColor={RED}
               hoverColor={DARK_RED}
               textColor={WHITE}

@@ -26,7 +26,6 @@
     "semi": "off",
     "no-unused-vars": "off",
     "arrow-parens": "off",
-    "react/jsx-filename-extension": "off",
-    "import/no-unresolved": "off"
+    "react/jsx-filename-extension": "off"
   }
 }
