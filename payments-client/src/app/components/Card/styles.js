@@ -14,9 +14,9 @@ const MainContainer = styled.div`
   text-align: ${({ titleAlignment }) => titleAlignment};
 
   ${stylesForSpecialDevice(
-    "SMARTPHONE",
+    "DESKTOP",
     `
-    max-width: 400px;
+    min-width: 400px;
   `,
   )}
 `;
