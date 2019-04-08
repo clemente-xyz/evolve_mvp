@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Query } from "react-apollo";
 
 import { QUERIES } from "../../apollo";
@@ -8,16 +9,12 @@ import {
   CurrencyDetailsContainer,
   CurrencyName,
   CurrencyIconContainer,
-  MarketDetailsContainer
+  MarketDetailsContainer,
 } from "./styles";
 
 const { GET_MARKETS } = QUERIES;
 
-const {
-  filterMarketsByPrimaryCur,
-  formatAmount,
-  getCurrencyNameAndIcon
-} = helpers;
+const { filterMarketsByPrimaryCur, formatAmount, getCurrencyNameAndIcon } = helpers;
 
 const MarketsCard = ({ markets }) => {
   const [activeMarket] = useState("CLP");
@@ -27,19 +24,17 @@ const MarketsCard = ({ markets }) => {
     <Card
       title={{
         text: "Markets",
-        alignment: "left"
+        alignment: "left",
       }}
-      content={
+      content={(
         <>
-          <p>Chilean market (CLP)</p>
           {filteredMarkets.map(({ _id, name, marketBuyPrice }) => {
             if (marketBuyPrice === 0) return null;
 
             const [primaryCurName, secondaryCurName] = name.split("/");
-            const {
-              name: currencyName,
-              icon: currencyIcon
-            } = getCurrencyNameAndIcon(primaryCurName);
+            const { name: currencyName, icon: currencyIcon } = getCurrencyNameAndIcon(
+              primaryCurName,
+            );
             const primaryCurrencyPrice = formatAmount(marketBuyPrice);
 
             return (
@@ -49,17 +44,23 @@ const MarketsCard = ({ markets }) => {
                 <CurrencyDetailsContainer>
                   <CurrencyName>{currencyName}</CurrencyName>
                   <div>
-                    {primaryCurrencyPrice} {secondaryCurName}
+                    {primaryCurrencyPrice}
+                    {" "}
+                    {secondaryCurName}
                   </div>
                 </CurrencyDetailsContainer>
               </MarketDetailsContainer>
             );
           })}
         </>
-      }
+)}
       buttons={null}
     />
   );
+};
+
+MarketsCard.propTypes = {
+  markets: PropTypes.array.isRequired,
 };
 
 export default () => (
