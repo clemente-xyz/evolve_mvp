@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Query } from "react-apollo";
 
 import { QUERIES } from "../../apollo";
-import Card from "../Card";
 import { helpers } from "../../utils";
+import Card from "../Card";
 import {
   CurrencyDetailsContainer,
   CurrencyName,
