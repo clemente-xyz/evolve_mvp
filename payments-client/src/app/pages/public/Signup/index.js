@@ -1,31 +1,28 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
 import { withRouter } from "react-router-dom";
 
 import { MUTATIONS } from "../../../apollo";
-import { Button, Card, Loading, TextInput } from "../../../components";
+import {
+ Button, Card, Loading, TextInput,
+} from "../../../components";
 import { constants, colors } from "../../../utils";
 import { ErrorText, MainContainer, TextInputContainer } from "./styles";
 
 const { CREATE_COMPANY } = MUTATIONS;
 const { SUCCESS_REGISTRATION_MESSAGE } = constants;
-const { blue, dark_blue, white } = colors;
+const { BLUE, DARK_BLUE, WHITE } = colors;
 
 const SignUp = ({
-  createCompanyMutation,
-  loadingState,
-  errorState,
-  history,
-  refetch
+ createCompanyMutation, loadingState, errorState, history, refetch,
 }) => {
-  const [username, setUsername] = useState(""),
-    [password, setPassword] = useState(""),
-    [email, setEmail] = useState(""),
-    [errorMessage, setErrorMessage] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = ({
-    target: { name: inputName, value: inputValue }
-  }) => {
+  const handleInputChange = ({ target: { name: inputName, value: inputValue } }) => {
     if (inputName === "username") {
       setUsername(inputValue);
     } else if (inputName === "password") {
@@ -38,12 +35,12 @@ const SignUp = ({
   const handleRegisterClick = async () => {
     try {
       const {
-        data: { createCompany }
+        data: { createCompany },
       } = await createCompanyMutation({
-        variables: { username, password, email }
+        variables: { username, password, email },
       });
 
-      const token = createCompany.token;
+      const { token } = createCompany;
 
       alert(SUCCESS_REGISTRATION_MESSAGE(username));
 
@@ -70,9 +67,9 @@ const SignUp = ({
       <Card
         title={{
           text: "Sign up",
-          alignment: "center"
+          alignment: "center",
         }}
-        content={
+        content={(
           <>
             <TextInputContainer>
               <TextInput
@@ -104,22 +101,34 @@ const SignUp = ({
 
             {errorState ? <ErrorText>{errorMessage}</ErrorText> : null}
           </>
-        }
-        buttons={
+)}
+        buttons={(
           <Button
             onClick={handleRegisterClick}
-            text={loadingState ? <Loading color={white} /> : "Register"}
-            backgroundColor={blue}
-            hoverColor={dark_blue}
-            textColor={white}
+            text={loadingState ? <Loading color={WHITE} /> : "Register"}
+            backgroundColor={BLUE}
+            hoverColor={DARK_BLUE}
+            textColor={WHITE}
           />
-        }
+)}
       />
     </MainContainer>
   );
 };
 
-const SignupWithMutation = props => (
+SignUp.defaultProps = {
+  errorState: null,
+};
+
+SignUp.propTypes = {
+  createCompanyMutation: PropTypes.func.isRequired,
+  loadingState: PropTypes.any.isRequired,
+  errorState: PropTypes.any,
+  history: PropTypes.object.isRequired,
+  refetch: PropTypes.func.isRequired,
+};
+
+const SignUpWithApollo = props => (
   <Mutation mutation={CREATE_COMPANY}>
     {(createCompany, { loading, error }) => (
       <SignUp
@@ -132,4 +141,4 @@ const SignupWithMutation = props => (
   </Mutation>
 );
 
-export default withRouter(SignupWithMutation);
+export default withRouter(SignUpWithApollo);

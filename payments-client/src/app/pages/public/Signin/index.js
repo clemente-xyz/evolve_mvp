@@ -13,8 +13,8 @@ import { ErrorText, MainContainer, TextInputContainer } from "./styles";
 const { SIGNIN_COMPANY } = MUTATIONS;
 const { WHITE, BLUE, DARK_BLUE } = colors;
 
-const Signin = ({
- signinCompanyMutation, loadingState, errorState, history, refetch,
+const SignIn = ({
+ signInCompanyMutation, loadingState, errorState, history, refetch,
 }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -32,7 +32,7 @@ const Signin = ({
     try {
       const {
         data: { signinCompany },
-      } = await signinCompanyMutation({
+      } = await signInCompanyMutation({
         variables: { username, password },
       });
 
@@ -97,23 +97,23 @@ const Signin = ({
   );
 };
 
-Signin.defaultProps = {
+SignIn.defaultProps = {
   errorState: null,
 };
 
-Signin.propTypes = {
-  signinCompanyMutation: PropTypes.func.isRequired,
+SignIn.propTypes = {
+  signInCompanyMutation: PropTypes.func.isRequired,
   loadingState: PropTypes.any.isRequired,
   errorState: PropTypes.any,
   history: PropTypes.object.isRequired,
   refetch: PropTypes.func.isRequired,
 };
 
-const SigninWithApollo = props => (
+const SignInWithApollo = props => (
   <Mutation mutation={SIGNIN_COMPANY}>
     {(signinCompany, { loading, error }) => (
-      <Signin
-        signinCompanyMutation={signinCompany}
+      <SignIn
+        signInCompanyMutation={signinCompany}
         loadingState={loading}
         errorState={error}
         {...props}
@@ -122,4 +122,4 @@ const SigninWithApollo = props => (
   </Mutation>
 );
 
-export default withRouter(SigninWithApollo);
+export default withRouter(SignInWithApollo);
