@@ -1,17 +1,28 @@
 import React from "react";
+import PropTypes from "prop-types";
 
+import { helpers } from "../../utils";
 import Card from "../Card";
 
-export default ({ funds }) => (
+const { formatAmount } = helpers;
+
+const FundsCard = ({ funds }) => (
   <Card
     title={{
       text: "Funds",
-      alignment: "left"
+      alignment: "left",
     }}
     content={funds.map(({ _id, currency, amount }) => (
       <p key={_id}>
-        {amount} in {currency}
+        {formatAmount(amount)}
+        {currency}
       </p>
     ))}
   />
 );
+
+FundsCard.propTypes = {
+  funds: PropTypes.array.isRequired,
+};
+
+export default FundsCard;

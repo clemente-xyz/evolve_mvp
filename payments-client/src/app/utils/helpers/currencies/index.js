@@ -2,6 +2,8 @@ import React from "react";
 
 import currencies from "../../theme/icons/Currencies";
 
+const DECIMALS_TO_ROUND_AMOUNTS = 2;
+
 const {
   Bitcoin,
   BitcoinCash,
@@ -59,7 +61,12 @@ const filterMarketsByPrimaryCur = (primaryCurFilter, markets) => markets.filter(
     return marketPrimaryCur === primaryCurFilter;
   });
 
-const formatAmount = amount => amount.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+const formatAmount = amount => {
+  const decimalsRoundedAmount = amount.toFixed(DECIMALS_TO_ROUND_AMOUNTS);
+  const hundredthsRoundedAmount = decimalsRoundedAmount.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+
+  return hundredthsRoundedAmount;
+};
 
 export default {
   filterMarketsByPrimaryCur,
