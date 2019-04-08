@@ -24,7 +24,7 @@ const Payment = ({ createPaymentMutation }) => {
     } else if (inputName === "receivingCrypto") {
       setReceivingCrypto(inputValue);
     } else if (inputName === "amount") {
-      setAmount(parseInt(inputValue));
+      setAmount(inputValue);
     } else if (inputName === "receiverUser") {
       setReceiverUser(inputValue);
     }
@@ -78,7 +78,7 @@ const Payment = ({ createPaymentMutation }) => {
             <TextInputContainer>
               <TextInput
                 name="amount"
-                type="text"
+                type="number"
                 value={amount}
                 placeholder="Amount"
                 handleChange={handleInputChange}

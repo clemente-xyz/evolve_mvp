@@ -21,6 +21,11 @@ const MainContainer = styled.div`
   )}
 `;
 
+const TitleContainer = styled.h1`
+  font-size: 30px;
+  margin-bottom: 50px;
+`;
+
 const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
@@ -34,4 +39,4 @@ const ButtonsContainer = styled.div`
   )}
 `;
 
-export { ButtonsContainer, MainContainer };
+export { ButtonsContainer, MainContainer, TitleContainer };

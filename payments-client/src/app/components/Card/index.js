@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { ButtonsContainer, MainContainer } from "./styles";
+import { ButtonsContainer, MainContainer, TitleContainer } from "./styles";
 
 const Card = ({ title, content, buttons }) => {
   const { text: titleText, alignment: titleAlignment } = title;
 
   return (
     <MainContainer titleAlignment={titleAlignment}>
-      <h1>{titleText}</h1>
+      <TitleContainer>{titleText}</TitleContainer>
       {content}
       <ButtonsContainer>{buttons}</ButtonsContainer>
     </MainContainer>
