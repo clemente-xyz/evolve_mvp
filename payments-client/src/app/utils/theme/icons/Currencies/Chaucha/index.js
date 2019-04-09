@@ -2,7 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Chaucha = ({ width = "32", height = "32" }) => (
+const Chaucha = ({ width, height }) => (
   <svg width={width} height={height} x="0px" y="0px" viewBox="0 0 425.2 425.2">
     <g>
       <g>
@@ -46,9 +46,14 @@ const Chaucha = ({ width = "32", height = "32" }) => (
   </svg>
 );
 
+Chaucha.defaultProps = {
+  width: "32",
+  height: "32",
+};
+
 Chaucha.propTypes = {
-  width: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired,
+  width: PropTypes.string,
+  height: PropTypes.string,
 };
 
 export default Chaucha;
