@@ -24,5 +24,5 @@ export {
   CryptoFundsContainer,
   BalanceContainer,
   MainContainer,
-  MarketContainer
+  MarketContainer,
 };

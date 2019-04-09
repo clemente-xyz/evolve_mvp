@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default ({ width = "32", height = "32" }) => (
+const Ripple = ({ width, height }) => (
   <svg width={width} height={height} viewBox="0 0 32 32">
     <g fill="none">
       <circle cx="16" cy="16" r="16" fill="#23292F" />
@@ -11,3 +12,15 @@ export default ({ width = "32", height = "32" }) => (
     </g>
   </svg>
 );
+
+Ripple.defaultProps = {
+  width: "32",
+  height: "32",
+};
+
+Ripple.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+};
+
+export default Ripple;

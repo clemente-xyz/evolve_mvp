@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default ({ width = "32", height = "32" }) => (
+const Dai = ({ width, height }) => (
   <svg width={width} height={height} viewBox="0 0 628.3 628.3">
     <circle
       cx="314.15"
@@ -30,3 +31,15 @@ export default ({ width = "32", height = "32" }) => (
     />
   </svg>
 );
+
+Dai.defaultProps = {
+  width: "32",
+  height: "32",
+};
+
+Dai.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+};
+
+export default Dai;

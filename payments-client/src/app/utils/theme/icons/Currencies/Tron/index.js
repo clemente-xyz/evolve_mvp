@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default ({ width = "32", height = "32" }) => (
+const Tron = ({ width, height }) => (
   <svg width={width} height={height}>
     <g fill="none">
       <circle cx="16" cy="16" r="16" fill="#000" />
@@ -11,3 +12,15 @@ export default ({ width = "32", height = "32" }) => (
     </g>
   </svg>
 );
+
+Tron.defaultProps = {
+  width: "32",
+  height: "32",
+};
+
+Tron.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+};
+
+export default Tron;

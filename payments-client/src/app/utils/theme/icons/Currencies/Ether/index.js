@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default ({ width = "32", height = "32" }) => (
+const Eth = ({ width, height }) => (
   <svg width={width} height={height}>
     <g fill="none" fillRule="evenodd">
       <circle cx="16" cy="16" r="16" fill="#627EEA" />
@@ -15,3 +16,15 @@ export default ({ width = "32", height = "32" }) => (
     </g>
   </svg>
 );
+
+Eth.defaultProps = {
+  width: "32",
+  height: "32",
+};
+
+Eth.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+};
+
+export default Eth;

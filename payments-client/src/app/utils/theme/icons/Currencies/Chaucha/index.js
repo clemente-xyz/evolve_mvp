@@ -1,6 +1,8 @@
+/* eslint-disable no-tabs */
 import React from "react";
+import PropTypes from "prop-types";
 
-export default ({ width = "32", height = "32" }) => (
+const Chaucha = ({ width = "32", height = "32" }) => (
   <svg width={width} height={height} x="0px" y="0px" viewBox="0 0 425.2 425.2">
     <g>
       <g>
@@ -43,3 +45,10 @@ export default ({ width = "32", height = "32" }) => (
     </g>
   </svg>
 );
+
+Chaucha.propTypes = {
+  width: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
+};
+
+export default Chaucha;

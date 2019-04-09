@@ -21,5 +21,5 @@ export default {
   Luka,
   Ripple,
   Stellar,
-  Tron
+  Tron,
 };

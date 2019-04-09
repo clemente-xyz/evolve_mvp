@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default ({ width = "32", height = "32" }) => (
+const Stellar = ({ width, height }) => (
   <svg width={width} height={height}>
     <g fill="none" fillRule="evenodd">
       <circle cx="16" cy="16" r="16" fill="#14B6E7" />
@@ -11,3 +12,15 @@ export default ({ width = "32", height = "32" }) => (
     </g>
   </svg>
 );
+
+Stellar.defaultProps = {
+  width: "32",
+  height: "32",
+};
+
+Stellar.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+};
+
+export default Stellar;

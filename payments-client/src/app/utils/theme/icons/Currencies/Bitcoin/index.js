@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default ({ width = "32", height = "32" }) => (
+const Bitcoin = ({ width, height }) => (
   <svg width={width} height={height}>
     <g fill="none" fillRule="evenodd">
       <circle cx="16" cy="16" r="16" fill="#F7931A" />
@@ -12,3 +13,15 @@ export default ({ width = "32", height = "32" }) => (
     </g>
   </svg>
 );
+
+Bitcoin.defaultProps = {
+  width: "32",
+  height: "32",
+};
+
+Bitcoin.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+};
+
+export default Bitcoin;

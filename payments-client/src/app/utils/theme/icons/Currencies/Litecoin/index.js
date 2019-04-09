@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default ({ width = "32", height = "32" }) => (
+const Litecoin = ({ width = "32", height = "32" }) => (
   <svg width={width} height={height} viewBox="0 0 32 32">
     <g fill="none" fillRule="evenodd">
       <circle cx="16" cy="16" r="16" fill="#BFBBBB" />
@@ -11,3 +12,15 @@ export default ({ width = "32", height = "32" }) => (
     </g>
   </svg>
 );
+
+Litecoin.defaultProps = {
+  width: "32",
+  height: "32",
+};
+
+Litecoin.propTypes = {
+  width: PropTypes.string,
+  height: PropTypes.string,
+};
+
+export default Litecoin;
