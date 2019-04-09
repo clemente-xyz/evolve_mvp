@@ -1,3 +1,4 @@
+import Binance from "./Binance";
 import Bitcoin from "./Bitcoin";
 import BitcoinCash from "./BitcoinCash";
 import Chaucha from "./Chaucha";
@@ -11,6 +12,7 @@ import Stellar from "./Stellar";
 import Tron from "./Tron";
 
 export default {
+  Binance,
   Bitcoin,
   BitcoinCash,
   Chaucha,

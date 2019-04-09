@@ -5,6 +5,7 @@ import currencies from "../../theme/icons/Currencies";
 const DECIMALS_TO_ROUND_AMOUNTS = 2;
 
 const {
+  Binance,
   Bitcoin,
   BitcoinCash,
   Chaucha,
@@ -19,6 +20,7 @@ const {
 } = currencies;
 
 const currenciesIconsIndexation = {
+  BNB: <Binance />,
   BTC: <Bitcoin />,
   BCH: <BitcoinCash />,
   CHA: <Chaucha />,
@@ -33,6 +35,7 @@ const currenciesIconsIndexation = {
 };
 
 const currenciesNamesIndexation = {
+  BNB: "Binance",
   BTC: "Bitcoin",
   BCH: "Bitcoin Cash",
   CHA: "Chaucha",
@@ -63,7 +66,10 @@ const filterMarketsByPrimaryCur = (primaryCurFilter, markets) => markets.filter(
 
 const formatAmount = amount => {
   const decimalsRoundedAmount = amount.toFixed(DECIMALS_TO_ROUND_AMOUNTS);
-  const hundredthsRoundedAmount = decimalsRoundedAmount.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+  const hundredthsRoundedAmount = decimalsRoundedAmount.replace(
+    /(\d)(?=(\d{3})+(?!\d))/g,
+    "$1,",
+  );
 
   return hundredthsRoundedAmount;
 };

@@ -1,15 +1,17 @@
+/* eslint-disable no-tabs */
 import React from "react";
+import PropTypes from "prop-types";
 
 import { colors } from "../../../index";
 import { Svg } from "./styles";
 
-const { gray, dark_gray } = colors;
+const { GRAY, DARK_GRAY } = colors;
 
-export default ({
+const Settings = ({
   height = "13px",
   width = "13px",
-  color = dark_gray,
-  hoverColor = gray
+  color = DARK_GRAY,
+  hoverColor = GRAY,
 }) => (
   <Svg
     version="1.1"
@@ -53,3 +55,19 @@ export default ({
     <g />
   </Svg>
 );
+
+Settings.defaultProps = {
+  height: "13px",
+  width: "13px",
+  color: DARK_GRAY,
+  hoverColor: GRAY,
+};
+
+Settings.propTypes = {
+  height: PropTypes.string,
+  width: PropTypes.string,
+  color: PropTypes.string,
+  hoverColor: PropTypes.string,
+};
+
+export default Settings;
