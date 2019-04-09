@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { ApolloConsumer } from "react-apollo";
 import { withRouter } from "react-router-dom";
 
@@ -10,7 +11,7 @@ const {
   DownArrow: DownArrowIcon,
   Exit: ExitIcon,
   Settings: SettingsIcon,
-  Information: InformationIcon
+  Information: InformationIcon,
 } = icons;
 
 const actionsConstructor = (myUsername, history, client) => {
@@ -22,23 +23,23 @@ const actionsConstructor = (myUsername, history, client) => {
   return [
     {
       label: myUsername,
-      onClick: null
+      onClick: null,
     },
     {
       label: "Support",
       onClick: () => alert("Support"),
-      icon: <InformationIcon />
+      icon: <InformationIcon />,
     },
     {
       label: "Settings",
       onClick: () => alert("Settings"),
-      icon: <SettingsIcon />
+      icon: <SettingsIcon />,
     },
     {
       label: "Sign out",
       onClick: handleSignOut,
-      icon: <ExitIcon />
-    }
+      icon: <ExitIcon />,
+    },
   ];
 };
 
@@ -65,6 +66,11 @@ const Dropdown = ({ myUsername, history }) => {
       )}
     </ApolloConsumer>
   );
+};
+
+Dropdown.propTypes = {
+  myUsername: PropTypes.string.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default withRouter(Dropdown);
