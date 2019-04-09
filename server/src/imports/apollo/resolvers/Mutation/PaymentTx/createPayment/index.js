@@ -20,10 +20,10 @@ const getWalletBalance = wallet => {
 
 export default async (_, args, { user }) => {
   try {
+    await requestAuth(user);
+
     const { receiverUser, amount, sendingCrypto, receivingCrypto } = args,
       { _id: userId } = user;
-
-    await requestAuth(user);
 
     const wallet = await Wallet.findOne({ owner: receiverUser }),
       fund = await Fund.create({
