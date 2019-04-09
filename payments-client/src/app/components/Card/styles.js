@@ -16,7 +16,7 @@ const MainContainer = styled.div`
   ${stylesForSpecialDevice(
     "DESKTOP",
     `
-    min-width: 400px;
+    min-width: 300px;
   `,
   )}
 `;
