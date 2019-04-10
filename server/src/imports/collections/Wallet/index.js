@@ -3,7 +3,7 @@ import { model, Schema } from "mongoose";
 const WalletSchema = new Schema(
   {
     balanceInClp: {
-      type: String,
+      type: Number,
       required: true
     },
     owner: {
