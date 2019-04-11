@@ -1,6 +1,7 @@
 import Avatar from "./Avatar";
 import Button from "./Button";
 import Card from "./Card";
+import Dialog from "./Dialog";
 import FundsCard from "./FundsCard";
 import Loading from "./Loading";
 import MarketsCard from "./MarketsCard";
@@ -15,6 +16,7 @@ export {
   Avatar,
   Button,
   Card,
+  Dialog,
   FundsCard,
   Loading,
   MarketsCard,

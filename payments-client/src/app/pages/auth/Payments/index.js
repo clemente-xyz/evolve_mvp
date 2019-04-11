@@ -1,24 +1,26 @@
+/* eslint-disable */
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
 
 import { MUTATIONS } from "../../../apollo";
-import { Button, Card, TextInput } from "../../../components";
+import { Button, Dialog, Card, TextInput } from "../../../components";
 import { colors } from "../../../utils";
 import { MainContainer, TextInputContainer } from "./styles";
 
 const { CREATE_PAYMENT } = MUTATIONS;
-const {
- DARK_GREEN, DARK_RED, GREEN, RED, WHITE,
-} = colors;
+const { DARK_GREEN, DARK_RED, GREEN, RED, WHITE } = colors;
 
 const Payment = ({ createPaymentMutation }) => {
   const [sendingCrypto, setSendingCrypto] = useState("");
   const [receivingCrypto, setReceivingCrypto] = useState("");
   const [amount, setAmount] = useState("");
   const [receiverUser, setReceiverUser] = useState("");
+  const [isPaymentFormActive, setIsPaymentFormActive] = useState(false);
 
-  const handleInputChange = ({ target: { name: inputName, value: inputValue } }) => {
+  const handleInputChange = ({
+    target: { name: inputName, value: inputValue }
+  }) => {
     if (inputName === "sendingCrypto") {
       setSendingCrypto(inputValue);
     } else if (inputName === "receivingCrypto") {
@@ -33,14 +35,14 @@ const Payment = ({ createPaymentMutation }) => {
   const handleCreatePaymentTxClick = async () => {
     try {
       const {
-        data: { createPayment },
+        data: { createPayment }
       } = await createPaymentMutation({
         variables: {
           sendingCrypto,
           receivingCrypto,
           amount,
-          receiverUser,
-        },
+          receiverUser
+        }
       });
 
       console.log(createPayment);
@@ -49,11 +51,27 @@ const Payment = ({ createPaymentMutation }) => {
     }
   };
 
+  const handlePaymentFormToggle = () => {
+    setIsPaymentFormActive(!isPaymentFormActive);
+  };
+
   return (
     <MainContainer>
+      <button type="button" onClick={handlePaymentFormToggle}>
+        toggle
+      </button>
+      {isPaymentFormActive ? (
+        <Dialog
+          confirmAction={() => alert("activated")}
+          declineAction={() => alert("deactivated")}
+        >
+          Hola
+        </Dialog>
+      ) : null}
+
       <Card
         title={{ text: "New Payment", alignment: "center" }}
-        content={(
+        content={
           <>
             <TextInputContainer>
               <TextInput
@@ -95,8 +113,8 @@ const Payment = ({ createPaymentMutation }) => {
               />
             </TextInputContainer>
           </>
-)}
-        buttons={(
+        }
+        buttons={
           <>
             <Button
               onClick={handleCreatePaymentTxClick}
@@ -114,14 +132,14 @@ const Payment = ({ createPaymentMutation }) => {
               textColor={WHITE}
             />
           </>
-)}
+        }
       />
     </MainContainer>
   );
 };
 
 Payment.propTypes = {
-  createPaymentMutation: PropTypes.func.isRequired,
+  createPaymentMutation: PropTypes.func.isRequired
 };
 
 const PaymentWithApollo = () => (
