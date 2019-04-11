@@ -12,10 +12,27 @@ const getFundAmount = async (sendingCrypto, receivingCrypto, amount) => {
   return amount * currenciesEquivalence;
 };
 
-const getWalletBalance = wallet => {
-  const oldBalance = wallet.balanceInClp;
+const getWalletBalance = async (
+  sendingCrypto,
+  receivingCrypto,
+  oldBalance,
+  paymentAmount
+) => {
+  const cursEquivalenceFactorForSendingCrypto = await getCurrencyEquivalence(
+    sendingCrypto,
+    receivingCrypto
+  );
+  const cursEquivalenceFactorForClp = await getCurrencyEquivalence(
+    receivingCrypto,
+    "CLP"
+  );
 
-  return oldBalance + 300;
+  return (
+    oldBalance +
+    paymentAmount *
+      cursEquivalenceFactorForClp *
+      cursEquivalenceFactorForSendingCrypto
+  );
 };
 
 export default async (_, args, { user }) => {
@@ -34,7 +51,15 @@ export default async (_, args, { user }) => {
 
     await Wallet.updateOne(
       { owner: receiverUser },
-      { balanceInClp: getWalletBalance(wallet), $push: { funds: fund } }
+      {
+        balanceInClp: await getWalletBalance(
+          sendingCrypto,
+          receivingCrypto,
+          wallet.balanceInClp,
+          amount
+        ),
+        $push: { funds: fund }
+      }
     );
 
     return PaymentTx.create({ ...args, senderUser: userId });
