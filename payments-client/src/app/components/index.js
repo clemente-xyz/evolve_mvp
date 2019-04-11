@@ -6,6 +6,7 @@ import Loading from "./Loading";
 import MarketsCard from "./MarketsCard";
 import Menu from "./Menu";
 import Navbar from "./Navbar";
+import Portal from "./Portal";
 import SignoutButton from "./SignoutButton";
 import TextInput from "./TextInput";
 import withSession from "./withSession";
@@ -20,6 +21,7 @@ export {
   SignoutButton,
   Menu,
   Navbar,
+  Portal,
   TextInput,
-  withSession
+  withSession,
 };
