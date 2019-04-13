@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 
-import { Button } from "../../../components";
+import { Button, MarketsCard as Markets } from "../../../components";
 import { colors } from "../../../utils";
-import PaymentsDialog from "./PaymentDialog";
+import NewPayment from "./NewPayment";
+import {
+  MainContainer,
+  TrasactionsContainer,
+  MarketsContainer,
+} from "./styles";
 
 const { BLUE, DARK_BLUE, WHITE } = colors;
 
@@ -14,18 +19,24 @@ const Payments = () => {
   };
 
   return (
-    <div>
-      <Button
-        onClick={handleOpenPaymentDialogClick}
-        text="New payment"
-        textColor={WHITE}
-        backgroundColor={BLUE}
-        hoverColor={DARK_BLUE}
-      />
+    <MainContainer>
+      <TrasactionsContainer>
+        <Button
+          onClick={handleOpenPaymentDialogClick}
+          text="New payment"
+          textColor={WHITE}
+          backgroundColor={BLUE}
+          hoverColor={DARK_BLUE}
+        />
+      </TrasactionsContainer>
+      <MarketsContainer>
+        <Markets />
+      </MarketsContainer>
+
       {isPaymentDialogOpen && (
-        <PaymentsDialog toggleOpen={handleOpenPaymentDialogClick} />
+        <NewPayment toggleOpen={handleOpenPaymentDialogClick} />
       )}
-    </div>
+    </MainContainer>
   );
 };
 

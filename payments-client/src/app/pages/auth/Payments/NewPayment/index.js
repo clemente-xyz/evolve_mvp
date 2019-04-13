@@ -9,7 +9,7 @@ import { MainContainer, TextInputContainer } from "./styles";
 
 const { CREATE_PAYMENT } = MUTATIONS;
 
-const PaymentDialog = ({ createPaymentMutation, toggleOpen }) => {
+const NewPayment = ({ createPaymentMutation, toggleOpen }) => {
   const [sendingCrypto, setSendingCrypto] = useState("");
   const [receivingCrypto, setReceivingCrypto] = useState("");
   const [amount, setAmount] = useState("");
@@ -102,12 +102,12 @@ const PaymentDialog = ({ createPaymentMutation, toggleOpen }) => {
   );
 };
 
-PaymentDialog.propTypes = {
+NewPayment.propTypes = {
   createPaymentMutation: PropTypes.func.isRequired,
   toggleOpen: PropTypes.func.isRequired
 };
 
-const PaymentDialogWithApollo = ({ toggleOpen }) => (
+const NewPaymentWithApollo = ({ toggleOpen }) => (
   <Mutation mutation={CREATE_PAYMENT}>
     {(createPayment, { loading, error }) => {
       if (loading) return <p>Loading...</p>;
@@ -124,4 +124,4 @@ const PaymentDialogWithApollo = ({ toggleOpen }) => (
   </Mutation>
 );
 
-export default PaymentDialogWithApollo;
+export default NewPaymentWithApollo;

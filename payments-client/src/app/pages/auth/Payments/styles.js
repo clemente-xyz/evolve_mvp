@@ -2,12 +2,17 @@ import styled from "styled-components";
 
 const MainContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   padding: 60px 50px;
 `;
 
-const TextInputContainer = styled.div`
-  margin-bottom: 10px;
+const TrasactionsContainer = styled.div`
+  flex: 0.4;
+  margin-right: 20px;
 `;
 
-export { MainContainer, TextInputContainer };
+const MarketsContainer = styled.div`
+  flex: 0.3;
+`;
+
+export { MainContainer, TrasactionsContainer, MarketsContainer };
