@@ -9,7 +9,7 @@ import { MainContainer, TextInputContainer } from "./styles";
 
 const { CREATE_PAYMENT } = MUTATIONS;
 
-const PaymentsDialog = ({ createPaymentMutation }) => {
+const PaymentDialog = ({ createPaymentMutation, toggleOpen }) => {
   const [sendingCrypto, setSendingCrypto] = useState("");
   const [receivingCrypto, setReceivingCrypto] = useState("");
   const [amount, setAmount] = useState("");
@@ -96,26 +96,32 @@ const PaymentsDialog = ({ createPaymentMutation }) => {
           </>
         }
         confirmAction={{ title: "Confirm", action: handleCreatePaymentTxClick }}
-        declineAction={{ title: "Close", action: () => alert("close dialog") }}
+        declineAction={{ title: "Close", action: toggleOpen }}
       />
     </MainContainer>
   );
 };
 
-PaymentsDialog.propTypes = {
-  createPaymentMutation: PropTypes.func.isRequired
+PaymentDialog.propTypes = {
+  createPaymentMutation: PropTypes.func.isRequired,
+  toggleOpen: PropTypes.func.isRequired
 };
 
-const PaymentWithApollo = () => (
+const PaymentDialogWithApollo = ({ toggleOpen }) => (
   <Mutation mutation={CREATE_PAYMENT}>
     {(createPayment, { loading, error }) => {
       if (loading) return <p>Loading...</p>;
 
       if (error) return <p>Error!</p>;
 
-      return <PaymentsDialog createPaymentMutation={createPayment} />;
+      return (
+        <PaymentDialog
+          createPaymentMutation={createPayment}
+          toggleOpen={toggleOpen}
+        />
+      );
     }}
   </Mutation>
 );
 
-export default PaymentWithApollo;
+export default PaymentDialogWithApollo;

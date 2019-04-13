@@ -9,11 +9,10 @@ const MainContainer = styled.div`
   width: 100%;
   height: 100%;
   top: 0;
-  left: 0;
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 40px;
+  padding: 80px 0;
   background-color: rgba(0, 0, 0, 0.2);
 `;
 
