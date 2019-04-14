@@ -1,11 +1,14 @@
 /* eslint-disable */
 import React from "react";
 import PropTypes from "prop-types";
+import { Query } from "react-apollo";
 
+import { QUERIES } from "../../../../apollo";
 import { Card, Button } from "../../../../components";
 import { MainContainer } from "./styles";
 import { colors } from "../../../../utils";
 
+const {} = QUERIES;
 const { BLUE, DARK_BLUE, WHITE } = colors;
 
 const Transactions = ({ newPaymentAction }) => (

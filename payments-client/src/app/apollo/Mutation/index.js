@@ -5,5 +5,5 @@ import WALLET_MUTATIONS from "./Wallet";
 export default {
   ...COMPANY_MUTATIONS,
   ...PAYMENTTX_MUTATIONS,
-  ...WALLET_MUTATIONS
+  ...WALLET_MUTATIONS,
 };
