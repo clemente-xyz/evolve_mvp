@@ -1,4 +1,4 @@
-import createPayment from "./createPayment";
+import createPayment from "./CreatePayment";
 
 export default {
   createPayment

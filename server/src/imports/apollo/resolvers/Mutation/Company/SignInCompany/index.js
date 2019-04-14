@@ -1,4 +1,4 @@
-import { Company } from "../../../../collections";
+import { Company } from "../../../../../collections";
 
 export default async (_, { username, password }) => {
   try {

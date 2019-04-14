@@ -1,5 +1,5 @@
-import signInCompany from "./signInCompany";
-import signUpCompany from "./signUpCompany";
+import signInCompany from "./SignInCompany";
+import signUpCompany from "./SignUpCompany";
 
 export default {
   signInCompany,
