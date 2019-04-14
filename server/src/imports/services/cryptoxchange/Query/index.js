@@ -61,4 +61,12 @@ const getMarkets = async () => {
   }
 };
 
+const me = async () => {
+  const wallets = await Orionx.wallets();
+
+  return wallets;
+};
+
+me();
+
 export default { getMarkets, getMarket };
