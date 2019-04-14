@@ -7,12 +7,10 @@ const MainContainer = styled.div`
 `;
 
 const TrasactionsContainer = styled.div`
-  flex: 0.4;
+  flex: 1;
   margin-right: 20px;
 `;
 
-const MarketsContainer = styled.div`
-  flex: 0.3;
-`;
+const MarketsContainer = styled.div``;
 
 export { MainContainer, TrasactionsContainer, MarketsContainer };

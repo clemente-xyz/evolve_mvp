@@ -4,9 +4,7 @@ import { Mutation } from "react-apollo";
 import { withRouter } from "react-router-dom";
 
 import { MUTATIONS } from "../../../apollo";
-import {
- Card, Button, Loading, TextInput,
-} from "../../../components";
+import { Card, Button, Loading, TextInput } from "../../../components";
 import { colors } from "../../../utils";
 import { ErrorText, MainContainer, TextInputContainer } from "./styles";
 
@@ -14,13 +12,19 @@ const { SIGNIN_COMPANY } = MUTATIONS;
 const { WHITE, BLUE, DARK_BLUE } = colors;
 
 const SignIn = ({
- signInCompanyMutation, loadingState, errorState, history, refetch,
+  signInCompanyMutation,
+  loadingState,
+  errorState,
+  history,
+  refetch
 }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = ({ target: { name: inputName, value: inputValue } }) => {
+  const handleInputChange = ({
+    target: { name: inputName, value: inputValue }
+  }) => {
     if (inputName === "username") {
       setUsername(inputValue);
     } else if (inputName === "password") {
@@ -31,9 +35,9 @@ const SignIn = ({
   const handleLoginClick = async () => {
     try {
       const {
-        data: { signinCompany },
+        data: { signinCompany }
       } = await signInCompanyMutation({
-        variables: { username, password },
+        variables: { username, password }
       });
 
       const { token } = signinCompany;
@@ -58,9 +62,9 @@ const SignIn = ({
       <Card
         title={{
           text: "Sign in",
-          alignment: "center",
+          alignment: "center"
         }}
-        content={(
+        content={
           <>
             <TextInputContainer>
               <TextInput
@@ -82,8 +86,8 @@ const SignIn = ({
             </TextInputContainer>
             {errorState && <ErrorText>{errorMessage}</ErrorText>}
           </>
-)}
-        buttons={(
+        }
+        buttons={
           <Button
             onClick={handleLoginClick}
             text={loadingState ? <Loading color={WHITE} /> : "Log in"}
@@ -91,14 +95,14 @@ const SignIn = ({
             hoverColor={DARK_BLUE}
             textColor={WHITE}
           />
-)}
+        }
       />
     </MainContainer>
   );
 };
 
 SignIn.defaultProps = {
-  errorState: null,
+  errorState: null
 };
 
 SignIn.propTypes = {
@@ -106,7 +110,7 @@ SignIn.propTypes = {
   loadingState: PropTypes.any.isRequired,
   errorState: PropTypes.any,
   history: PropTypes.object.isRequired,
-  refetch: PropTypes.func.isRequired,
+  refetch: PropTypes.func.isRequired
 };
 
 const SignInWithApollo = props => (

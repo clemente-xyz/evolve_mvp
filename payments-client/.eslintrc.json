@@ -28,6 +28,7 @@
     "arrow-parens": "off",
     "react/jsx-filename-extension": "off",
     "react/forbid-prop-types": "off",
-    "radix": "off"
+    "radix": "off",
+    "comma-dangle": "off"
   }
 }

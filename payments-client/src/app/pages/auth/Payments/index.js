@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 
-import { Button, MarketsCard as Markets } from "../../../components";
-import { colors } from "../../../utils";
+import { MarketsCard as Markets } from "../../../components";
+import Transactions from "./Transactions";
 import NewPayment from "./NewPayment";
 import {
   MainContainer,
   TrasactionsContainer,
-  MarketsContainer,
+  MarketsContainer
 } from "./styles";
-
-const { BLUE, DARK_BLUE, WHITE } = colors;
 
 const Payments = () => {
   const [isPaymentDialogOpen, setPaymentDialogOpen] = useState(false);
@@ -21,13 +19,7 @@ const Payments = () => {
   return (
     <MainContainer>
       <TrasactionsContainer>
-        <Button
-          onClick={handleOpenPaymentDialogClick}
-          text="New payment"
-          textColor={WHITE}
-          backgroundColor={BLUE}
-          hoverColor={DARK_BLUE}
-        />
+        <Transactions newPaymentAction={handleOpenPaymentDialogClick} />
       </TrasactionsContainer>
       <MarketsContainer>
         <Markets />

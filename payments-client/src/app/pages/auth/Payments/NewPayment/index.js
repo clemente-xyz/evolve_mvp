@@ -115,7 +115,7 @@ const NewPaymentWithApollo = ({ toggleOpen }) => (
       if (error) return <p>Error!</p>;
 
       return (
-        <PaymentDialog
+        <NewPayment
           createPaymentMutation={createPayment}
           toggleOpen={toggleOpen}
         />
