@@ -1,5 +1,5 @@
-import { Fund, PaymentTx, Wallet } from "../../../../../collections";
-import helpers from "../../../../../helpers";
+import { Fund, PaymentTx, Wallet } from "../../../../collections";
+import helpers from "../../../../helpers";
 
 const { getCurrencyEquivalence, requestAuth } = helpers;
 

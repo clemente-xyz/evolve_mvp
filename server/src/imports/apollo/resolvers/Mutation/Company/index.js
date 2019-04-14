@@ -1,7 +1,7 @@
-import createCompany from "./createCompany";
-import signinCompany from "./singinCompany";
+import signInCompany from "./signInCompany";
+import signUpCompany from "./signUpCompany";
 
 export default {
-  createCompany,
-  signinCompany
+  signInCompany,
+  signUpCompany
 };

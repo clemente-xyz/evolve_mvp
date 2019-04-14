@@ -1,4 +1,4 @@
-import { Company, Wallet } from "../../../../../collections";
+import { Company, Wallet } from "../../../../collections";
 
 export default async (_, args) => {
   try {
