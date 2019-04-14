@@ -1,4 +1,4 @@
-import CREATE_COMPANY from "./CreateCompany";
 import SIGNIN_COMPANY from "./SingnInCompany";
+import SIGNUP_COMPANY from "./SignUpCompany";
 
-export default { CREATE_COMPANY, SIGNIN_COMPANY };
+export default { SIGNIN_COMPANY, SIGNUP_COMPANY };

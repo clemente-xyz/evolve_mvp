@@ -5,24 +5,34 @@ import { withRouter } from "react-router-dom";
 
 import { MUTATIONS } from "../../../apollo";
 import {
- Button, Card, Loading, TextInput,
+  // eslint-disable-next-line no-trailing-spaces
+  Button,
+  Card,
+  Loading,
+  TextInput,
 } from "../../../components";
 import { constants, colors } from "../../../utils";
 import { ErrorText, MainContainer, TextInputContainer } from "./styles";
 
-const { CREATE_COMPANY } = MUTATIONS;
+const { SIGNUP_COMPANY } = MUTATIONS;
 const { SUCCESS_REGISTRATION_MESSAGE } = constants;
 const { BLUE, DARK_BLUE, WHITE } = colors;
 
 const SignUp = ({
- createCompanyMutation, loadingState, errorState, history, refetch,
+  signUpCompanyMutation,
+  loadingState,
+  errorState,
+  history,
+  refetch,
 }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputChange = ({ target: { name: inputName, value: inputValue } }) => {
+  const handleInputChange = ({
+    target: { name: inputName, value: inputValue },
+  }) => {
     if (inputName === "username") {
       setUsername(inputValue);
     } else if (inputName === "password") {
@@ -35,12 +45,12 @@ const SignUp = ({
   const handleRegisterClick = async () => {
     try {
       const {
-        data: { createCompany },
-      } = await createCompanyMutation({
+        data: { signUpCompany },
+      } = await signUpCompanyMutation({
         variables: { username, password, email },
       });
 
-      const { token } = createCompany;
+      const { token } = signUpCompany;
 
       alert(SUCCESS_REGISTRATION_MESSAGE(username));
 
@@ -69,7 +79,7 @@ const SignUp = ({
           text: "Sign up",
           alignment: "center",
         }}
-        content={(
+        content={
           <>
             <TextInputContainer>
               <TextInput
@@ -101,8 +111,8 @@ const SignUp = ({
 
             {errorState ? <ErrorText>{errorMessage}</ErrorText> : null}
           </>
-)}
-        buttons={(
+        }
+        buttons={
           <Button
             onClick={handleRegisterClick}
             text={loadingState ? <Loading color={WHITE} /> : "Register"}
@@ -110,7 +120,7 @@ const SignUp = ({
             hoverColor={DARK_BLUE}
             textColor={WHITE}
           />
-)}
+        }
       />
     </MainContainer>
   );
@@ -121,7 +131,7 @@ SignUp.defaultProps = {
 };
 
 SignUp.propTypes = {
-  createCompanyMutation: PropTypes.func.isRequired,
+  signUpCompanyMutation: PropTypes.func.isRequired,
   loadingState: PropTypes.any.isRequired,
   errorState: PropTypes.any,
   history: PropTypes.object.isRequired,
@@ -129,10 +139,10 @@ SignUp.propTypes = {
 };
 
 const SignUpWithApollo = props => (
-  <Mutation mutation={CREATE_COMPANY}>
-    {(createCompany, { loading, error }) => (
+  <Mutation mutation={SIGNUP_COMPANY}>
+    {(signUpCompany, { loading, error }) => (
       <SignUp
-        createCompanyMutation={createCompany}
+        signUpCompanyMutation={signUpCompany}
         loadingState={loading}
         errorState={error}
         {...props}
