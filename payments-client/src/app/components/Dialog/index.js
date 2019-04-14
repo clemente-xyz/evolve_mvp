@@ -5,6 +5,7 @@ import Button from "../Button";
 import Portal from "../Portal";
 import { colors } from "../../utils";
 import {
+  Background,
   ButtonsContainer,
   CardContainer,
   MainContainer,
@@ -63,6 +64,7 @@ const Dialog = ({
             />
           </ButtonsContainer>
         </CardContainer>
+        <Background onClick={declineActionFunc} />
       </MainContainer>
     </Portal>
   );

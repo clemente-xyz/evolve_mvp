@@ -23,7 +23,6 @@ const Transactions = ({ newPaymentAction }) => (
           backgroundColor={BLUE}
           hoverColor={DARK_BLUE}
         />
-        pico
       </MainContainer>
     }
   />

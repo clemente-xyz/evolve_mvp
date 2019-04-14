@@ -6,7 +6,7 @@ import NewPayment from "./NewPayment";
 import {
   MainContainer,
   TrasactionsContainer,
-  MarketsContainer
+  MarketsContainer,
 } from "./styles";
 
 const Payments = () => {

@@ -9,14 +9,14 @@ const MainContainer = styled.div`
   width: 100%;
   height: 100%;
   top: 0;
+  left: 0;
   display: flex;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  padding: 80px 0;
-  background-color: rgba(0, 0, 0, 0.2);
 `;
 
 const CardContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 40px;
@@ -24,6 +24,7 @@ const CardContainer = styled.div`
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: ${({ titleAlignment }) => titleAlignment};
+  z-index: 10;
 
   ${stylesForSpecialDevice(
     "DESKTOP",
@@ -31,6 +32,16 @@ const CardContainer = styled.div`
     min-width: 300px;
   `,
   )}
+`;
+
+const Background = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: black;
+  opacity: 0.2;
 `;
 
 const TitleContainer = styled.h1`
@@ -52,7 +63,7 @@ const ButtonsContainer = styled.div`
 `;
 
 export {
-  // eslint-disable-next-line no-trailing-spaces
+  Background,
   ButtonsContainer,
   CardContainer,
   MainContainer,
