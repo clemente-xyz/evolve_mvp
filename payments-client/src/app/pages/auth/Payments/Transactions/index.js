@@ -2,14 +2,31 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Query } from "react-apollo";
+import dayjs from "dayjs";
 
 import { QUERIES } from "../../../../apollo";
 import { Card, Button } from "../../../../components";
-import { MainContainer } from "./styles";
+import {
+  AmountContainer,
+  ButtonContainer,
+  DateContainer,
+  MainContainer,
+  ReceivingCryptoContainer,
+  RecipientContainer,
+  SendingCryptoContainer,
+  TransactionContainer,
+  TransactionsHeaderContainer,
+} from "./styles";
 import { colors } from "../../../../utils";
 
 const { GET_MY_PAYMENTS } = QUERIES;
-const { BLUE, DARK_BLUE, WHITE } = colors;
+const {
+  // eslint-disable-next-line comma-dangle
+  BLUE,
+  DARK_BLUE,
+  DARK_GREEN,
+  WHITE,
+} = colors;
 
 const Transactions = ({ newPaymentAction, transactions }) => (
   <Card
@@ -19,13 +36,22 @@ const Transactions = ({ newPaymentAction, transactions }) => (
     }}
     content={
       <MainContainer>
-        <Button
-          onClick={newPaymentAction}
-          text="New payment"
-          textColor={WHITE}
-          backgroundColor={BLUE}
-          hoverColor={DARK_BLUE}
-        />
+        <ButtonContainer>
+          <Button
+            onClick={newPaymentAction}
+            text="New payment"
+            textColor={WHITE}
+            backgroundColor={BLUE}
+            hoverColor={DARK_BLUE}
+          />
+        </ButtonContainer>
+        <TransactionsHeaderContainer>
+          <DateContainer>Date</DateContainer>
+          <RecipientContainer>Recipient</RecipientContainer>
+          <AmountContainer>Amount</AmountContainer>
+          <SendingCryptoContainer>Sending crypto</SendingCryptoContainer>
+          <ReceivingCryptoContainer>Receiving crypto</ReceivingCryptoContainer>
+        </TransactionsHeaderContainer>
         {transactions.map(
           ({
             amount,
@@ -35,14 +61,19 @@ const Transactions = ({ newPaymentAction, transactions }) => (
             receiverUser: { username },
             sendingCrypto,
           }) => (
-            <div key={_id}>
-              <hr />
-              <p>Amount: {amount}</p>
-              <p>createdAt: {createdAt}</p>
-              <p>receivingCrypto: {receivingCrypto}</p>
-              <p>username: {username}</p>
-              <p>sendingCrypto: {sendingCrypto}</p>
-            </div>
+            <TransactionContainer key={_id}>
+              <DateContainer>
+                {dayjs(createdAt).format("MM/DD/YY")}
+              </DateContainer>
+              <RecipientContainer>{username}</RecipientContainer>
+              <AmountContainer style={{ color: DARK_GREEN }}>
+                {amount}
+              </AmountContainer>
+              <SendingCryptoContainer>{sendingCrypto}</SendingCryptoContainer>
+              <ReceivingCryptoContainer>
+                {receivingCrypto}
+              </ReceivingCryptoContainer>
+            </TransactionContainer>
           ),
         )}
       </MainContainer>

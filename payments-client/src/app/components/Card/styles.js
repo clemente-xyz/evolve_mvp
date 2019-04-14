@@ -23,7 +23,7 @@ const MainContainer = styled.div`
 
 const TitleContainer = styled.h1`
   font-size: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `;
 
 const ButtonsContainer = styled.div`
