@@ -1,5 +1,5 @@
-import getMarkets from "./getMarkets";
+import getMarkets from "./GetMarkets";
 
 export default {
-	getMarkets
+  getMarkets
 };

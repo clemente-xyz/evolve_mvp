@@ -1,5 +1,5 @@
-import { Market } from "../../../../collections";
-import helpers from "../../../../helpers";
+import { Market } from "../../../../../collections";
+import helpers from "../../../../../helpers";
 
 const { updateMarkets } = helpers;
 

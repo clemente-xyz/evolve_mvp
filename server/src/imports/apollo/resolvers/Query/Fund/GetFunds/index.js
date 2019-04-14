@@ -1,5 +1,5 @@
-import { Fund } from "../../../../collections";
-import helpers from "../../../../helpers";
+import { Fund } from "../../../../../collections";
+import helpers from "../../../../../helpers";
 
 const { requestAuth } = helpers;
 

@@ -1,4 +1,4 @@
-import getFunds from "./getFunds";
+import getFunds from "./GetFunds";
 
 export default {
   getFunds

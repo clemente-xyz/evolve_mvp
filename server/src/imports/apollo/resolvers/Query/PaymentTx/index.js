@@ -1,5 +1,5 @@
-import getUserPayments from "./getUserPayments";
-import getAllPayments from "./getAllPayments";
+import getUserPayments from "./GetUserPayments";
+import getAllPayments from "./GetAllPayments";
 
 export default {
   getUserPayments,

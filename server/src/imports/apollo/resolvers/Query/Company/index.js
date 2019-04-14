@@ -1,7 +1,7 @@
-import getCompanies from "./getCompanies";
-import meAsCompany from "./meAsCompany";
+import getCompanies from "./GetCompanies";
+import meAsCompany from "./MeAsCompany";
 
 export default {
-	getCompanies,
-	meAsCompany
+  getCompanies,
+  meAsCompany
 };

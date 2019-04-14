@@ -1,4 +1,4 @@
-import helpers from "../../../../helpers";
+import helpers from "../../../../../helpers";
 
 const { requestAuth } = helpers;
 
@@ -7,5 +7,6 @@ export default async (_, args, { user }) => {
     return null;
   }
   const me = await requestAuth(user);
+
   return me;
 };

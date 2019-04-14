@@ -1,5 +1,5 @@
-import { PaymentTx } from "../../../../collections";
-import helpers from "../../../../helpers";
+import { PaymentTx } from "../../../../../collections";
+import helpers from "../../../../../helpers";
 
 const { requestAuth } = helpers;
 
