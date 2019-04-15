@@ -13,7 +13,7 @@ const { GET_MY_PAYMENTS } = QUERIES;
 const NewPayment = ({ createPaymentMutation, toggleOpen }) => {
   const [sendingCrypto, setSendingCrypto] = useState("");
   const [receivingCrypto, setReceivingCrypto] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   const [receiverUser, setReceiverUser] = useState("");
 
   const handleInputChange = ({
@@ -24,7 +24,7 @@ const NewPayment = ({ createPaymentMutation, toggleOpen }) => {
     } else if (inputName === "receivingCrypto") {
       setReceivingCrypto(inputValue);
     } else if (inputName === "amount") {
-      setAmount(parseInt(inputValue));
+      setAmount(inputValue);
     } else if (inputName === "receiverUser") {
       setReceiverUser(inputValue);
     }
@@ -38,7 +38,7 @@ const NewPayment = ({ createPaymentMutation, toggleOpen }) => {
         variables: {
           sendingCrypto,
           receivingCrypto,
-          amount,
+          amount: parseInt(amount),
           receiverUser
         }
       });
