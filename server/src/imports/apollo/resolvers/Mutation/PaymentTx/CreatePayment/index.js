@@ -12,24 +12,27 @@ const createPayment = async (_, args, { user }) => {
       { _id: userId } = user;
 
     const wallet = await Wallet.findOne({ owner: receiverUser });
-
     const newBalanceInClp = await getWalletBalance(
       sendingCrypto,
       receivingCrypto,
       wallet.balanceInClp,
       amount
     );
-
     const preFund = await Fund.findOne({
       wallet: wallet._id,
       currency: receivingCrypto
     });
+    const newFundAmount = await getFundAmount(
+      sendingCrypto,
+      receivingCrypto,
+      amount
+    );
 
     if (!preFund) {
       const fund = await Fund.create({
         wallet: wallet._id,
         currency: receivingCrypto,
-        amount: await getFundAmount(sendingCrypto, receivingCrypto, amount)
+        amount: newFundAmount
       });
 
       await Wallet.updateOne(
@@ -45,9 +48,7 @@ const createPayment = async (_, args, { user }) => {
           _id: preFund._id
         },
         {
-          amount:
-            preFund.amount +
-            (await getFundAmount(sendingCrypto, receivingCrypto, amount))
+          amount: preFund.amount + newFundAmount
         }
       );
     }
