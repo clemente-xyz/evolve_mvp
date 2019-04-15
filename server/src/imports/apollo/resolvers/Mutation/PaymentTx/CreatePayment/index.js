@@ -11,25 +11,46 @@ const createPayment = async (_, args, { user }) => {
     const { receiverUser, amount, sendingCrypto, receivingCrypto } = args,
       { _id: userId } = user;
 
-    const wallet = await Wallet.findOne({ owner: receiverUser }),
-      fund = await Fund.create({
+    const wallet = await Wallet.findOne({ owner: receiverUser });
+
+    const newBalanceInClp = await getWalletBalance(
+      sendingCrypto,
+      receivingCrypto,
+      wallet.balanceInClp,
+      amount
+    );
+
+    const preFund = await Fund.findOne({
+      wallet: wallet._id,
+      currency: receivingCrypto
+    });
+
+    if (!preFund) {
+      const fund = await Fund.create({
         wallet: wallet._id,
         currency: receivingCrypto,
         amount: await getFundAmount(sendingCrypto, receivingCrypto, amount)
       });
 
-    await Wallet.updateOne(
-      { owner: receiverUser },
-      {
-        balanceInClp: await getWalletBalance(
-          sendingCrypto,
-          receivingCrypto,
-          wallet.balanceInClp,
-          amount
-        ),
-        $push: { funds: fund }
-      }
-    );
+      await Wallet.updateOne(
+        { owner: receiverUser },
+        {
+          balanceInClp: newBalanceInClp,
+          $push: { funds: fund }
+        }
+      );
+    } else {
+      await Fund.updateOne(
+        {
+          _id: preFund._id
+        },
+        {
+          amount:
+            preFund.amount +
+            (await getFundAmount(sendingCrypto, receivingCrypto, amount))
+        }
+      );
+    }
 
     return PaymentTx.create({ ...args, senderUser: userId });
   } catch (error) {
