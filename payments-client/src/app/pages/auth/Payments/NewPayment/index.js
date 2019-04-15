@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
@@ -10,14 +9,21 @@ import { MainContainer, TextInputContainer } from "./styles";
 const { CREATE_PAYMENT } = MUTATIONS;
 const { GET_MY_PAYMENTS } = QUERIES;
 
-const NewPayment = ({ createPaymentMutation, toggleOpen }) => {
+const NewPayment = ({
+  createPaymentMutation,
+  errorState,
+  loadingState,
+  toggleOpen,
+}) => {
   const [sendingCrypto, setSendingCrypto] = useState("");
   const [receivingCrypto, setReceivingCrypto] = useState("");
   const [amount, setAmount] = useState("");
   const [receiverUser, setReceiverUser] = useState("");
 
+  const [showSuccessMsg, setShowSuccessMsg] = useState(false);
+
   const handleInputChange = ({
-    target: { name: inputName, value: inputValue }
+    target: { name: inputName, value: inputValue },
   }) => {
     if (inputName === "sendingCrypto") {
       setSendingCrypto(inputValue);
@@ -33,15 +39,21 @@ const NewPayment = ({ createPaymentMutation, toggleOpen }) => {
   const handleCreatePaymentTxClick = async () => {
     try {
       const {
-        data: { createPayment }
+        data: { createPayment },
       } = await createPaymentMutation({
         variables: {
           sendingCrypto,
           receivingCrypto,
           amount: parseInt(amount),
-          receiverUser
-        }
+          receiverUser,
+        },
       });
+
+      setShowSuccessMsg(true);
+      setSendingCrypto("");
+      setReceivingCrypto("");
+      setAmount("");
+      setReceiverUser("");
 
       console.log(createPayment);
     } catch (error) {
@@ -94,6 +106,12 @@ const NewPayment = ({ createPaymentMutation, toggleOpen }) => {
                 handleChange={handleInputChange}
               />
             </TextInputContainer>
+
+            {loadingState && <p>Loading...</p>}
+
+            {showSuccessMsg && <p>Success!</p>}
+
+            {errorState && <p>Error :(</p>}
           </>
         }
         confirmAction={{ title: "Confirm", action: handleCreatePaymentTxClick }}
@@ -101,11 +119,6 @@ const NewPayment = ({ createPaymentMutation, toggleOpen }) => {
       />
     </MainContainer>
   );
-};
-
-NewPayment.propTypes = {
-  createPaymentMutation: PropTypes.func.isRequired,
-  toggleOpen: PropTypes.func.isRequired
 };
 
 const NewPaymentWithApollo = ({ toggleOpen }) => (
@@ -116,23 +129,35 @@ const NewPaymentWithApollo = ({ toggleOpen }) => (
 
       cache.writeQuery({
         query: GET_MY_PAYMENTS,
-        data: { getMyPayments: getMyPayments.concat([createPayment]) }
+        data: { getMyPayments: getMyPayments.concat([createPayment]) },
       });
     }}
   >
-    {(createPayment, { loading, error }) => {
-      if (loading) return <p>Loading...</p>;
-
-      if (error) return <p>Error!</p>;
-
-      return (
-        <NewPayment
-          createPaymentMutation={createPayment}
-          toggleOpen={toggleOpen}
-        />
-      );
-    }}
+    {(createPayment, { loading, error }) => (
+      <NewPayment
+        createPaymentMutation={createPayment}
+        errorState={error}
+        loadingState={loading}
+        toggleOpen={toggleOpen}
+      />
+    )}
   </Mutation>
 );
+
+NewPayment.defaultProps = {
+  errorState: undefined,
+  loadingState: undefined,
+};
+
+NewPayment.propTypes = {
+  createPaymentMutation: PropTypes.func.isRequired,
+  errorState: PropTypes.any,
+  loadingState: PropTypes.any,
+  toggleOpen: PropTypes.func.isRequired,
+};
+
+NewPaymentWithApollo.propTypes = {
+  toggleOpen: PropTypes.func.isRequired,
+};
 
 export default NewPaymentWithApollo;
