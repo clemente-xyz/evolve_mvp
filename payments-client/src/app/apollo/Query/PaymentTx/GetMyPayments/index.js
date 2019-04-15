@@ -7,6 +7,10 @@ export default gql`
       createdAt
       _id
       receivingCrypto
+      senderUser {
+        _id
+        username
+      }
       receiverUser {
         _id
         username

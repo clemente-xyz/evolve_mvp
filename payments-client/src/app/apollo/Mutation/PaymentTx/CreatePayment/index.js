@@ -13,10 +13,10 @@ export default gql`
       amount: $amount
       receiverUser: $receiverUser
     ) {
-      _id
-      sendingCrypto
-      receivingCrypto
       amount
+      createdAt
+      _id
+      receivingCrypto
       senderUser {
         _id
         username
@@ -25,6 +25,7 @@ export default gql`
         _id
         username
       }
+      sendingCrypto
     }
   }
 `;

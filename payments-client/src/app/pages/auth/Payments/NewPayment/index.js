@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
 
-import { MUTATIONS } from "../../../../apollo";
+import { MUTATIONS, QUERIES } from "../../../../apollo";
 import { Dialog, TextInput } from "../../../../components";
 import { MainContainer, TextInputContainer } from "./styles";
 
 const { CREATE_PAYMENT } = MUTATIONS;
+const { GET_MY_PAYMENTS } = QUERIES;
 
 const NewPayment = ({ createPaymentMutation, toggleOpen }) => {
   const [sendingCrypto, setSendingCrypto] = useState("");
@@ -108,7 +109,17 @@ NewPayment.propTypes = {
 };
 
 const NewPaymentWithApollo = ({ toggleOpen }) => (
-  <Mutation mutation={CREATE_PAYMENT}>
+  <Mutation
+    mutation={CREATE_PAYMENT}
+    update={(cache, { data: { createPayment } }) => {
+      const { getMyPayments } = cache.readQuery({ query: GET_MY_PAYMENTS });
+
+      cache.writeQuery({
+        query: GET_MY_PAYMENTS,
+        data: { getMyPayments: getMyPayments.concat([createPayment]) }
+      });
+    }}
+  >
     {(createPayment, { loading, error }) => {
       if (loading) return <p>Loading...</p>;
 
