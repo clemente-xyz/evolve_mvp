@@ -4,7 +4,13 @@ import { Mutation } from "react-apollo";
 import { withRouter } from "react-router-dom";
 
 import { MUTATIONS } from "../../../apollo";
-import { Card, Button, Loading, TextInput } from "../../../components";
+import {
+  // eslint-disable-next-line no-trailing-spaces
+  Card,
+  Button,
+  Loading,
+  TextInput,
+} from "../../../components";
 import { colors } from "../../../utils";
 import { ErrorText, MainContainer, TextInputContainer } from "./styles";
 
@@ -16,14 +22,14 @@ const SignIn = ({
   loadingState,
   errorState,
   history,
-  refetch
+  refetch,
 }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleInputChange = ({
-    target: { name: inputName, value: inputValue }
+    target: { name: inputName, value: inputValue },
   }) => {
     if (inputName === "username") {
       setUsername(inputValue);
@@ -35,12 +41,12 @@ const SignIn = ({
   const handleLoginClick = async () => {
     try {
       const {
-        data: { signinCompany }
+        data: { signInCompany },
       } = await signInCompanyMutation({
-        variables: { username, password }
+        variables: { username, password },
       });
 
-      const { token } = signinCompany;
+      const { token } = signInCompany;
 
       localStorage.setItem("token", token);
 
@@ -62,7 +68,7 @@ const SignIn = ({
       <Card
         title={{
           text: "Sign in",
-          alignment: "center"
+          alignment: "center",
         }}
         content={
           <>
@@ -102,7 +108,7 @@ const SignIn = ({
 };
 
 SignIn.defaultProps = {
-  errorState: null
+  errorState: null,
 };
 
 SignIn.propTypes = {
@@ -110,14 +116,14 @@ SignIn.propTypes = {
   loadingState: PropTypes.any.isRequired,
   errorState: PropTypes.any,
   history: PropTypes.object.isRequired,
-  refetch: PropTypes.func.isRequired
+  refetch: PropTypes.func.isRequired,
 };
 
 const SignInWithApollo = props => (
   <Mutation mutation={SIGNIN_COMPANY}>
-    {(signinCompany, { loading, error }) => (
+    {(signInCompany, { loading, error }) => (
       <SignIn
-        signInCompanyMutation={signinCompany}
+        signInCompanyMutation={signInCompany}
         loadingState={loading}
         errorState={error}
         {...props}
