@@ -1,7 +1,7 @@
 // import { schedule } from "node-cron";
 
 import { Market } from "../../../../imports/collections";
-import helpers from "../../../../imports/helpers";
+import helpers from "../../../../imports/utils/helpers";
 
 const { populateMarkets, updateMarkets } = helpers;
 

@@ -1,4 +1,4 @@
-import { cryptoxchangeService } from "../../services";
+import { cryptoxchangeService } from "../../../services";
 
 const { getMarkets } = cryptoxchangeService;
 

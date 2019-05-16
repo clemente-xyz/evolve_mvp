@@ -1,6 +1,6 @@
 import { Fund, PaymentTx, Wallet } from "../../../../../collections";
 import { getFundAmount, getWalletBalance } from "./helpers";
-import helpers from "../../../../../helpers";
+import helpers from "../../../../../utils/helpers";
 
 const { requestAuth } = helpers;
 

@@ -1,5 +1,5 @@
 import { Market } from "../../../../../collections";
-import helpers from "../../../../../helpers";
+import helpers from "../../../../../utils/helpers";
 
 const { updateMarkets } = helpers;
 
